@@ -13,7 +13,9 @@
         <entry key="app/src/main/res/font/poppins.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins600.xml" value="0.32222222222222224" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/fragment_onboarding1.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_onboarding1.xml" value="0.23981481481481481" />
+        <entry key="app/src/main/res/layout/fragment_onboarding2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_onboarding3.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.30462962962962964" />
       </map>

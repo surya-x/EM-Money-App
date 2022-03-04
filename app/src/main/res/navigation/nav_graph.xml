@@ -12,11 +12,33 @@
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/action_splashScreen_to_onboarding1"
-            app:destination="@id/onboarding1" />
+            app:destination="@id/onboarding1"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/onboarding1"
         android:name="in.emmoney.app.loginandregister.presentation.Onboarding1"
         android:label="Onboarding1"
-        tools:layout="@layout/fragment_onboarding1"/>
+        tools:layout="@layout/fragment_onboarding1">
+        <action
+            android:id="@+id/action_onboarding1_to_onboarding2"
+            app:destination="@id/onboarding2"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboarding2"
+        android:name="in.emmoney.app.loginandregister.presentation.Onboarding2"
+        android:label="Onboarding2" >
+        <action
+            android:id="@+id/action_onboarding2_to_onboarding3"
+            app:destination="@id/onboarding3"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboarding3"
+        android:name="in.emmoney.app.loginandregister.presentation.Onboarding3"
+        android:label="Onboarding3" />
 </navigation>

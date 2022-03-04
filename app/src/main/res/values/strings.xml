@@ -14,4 +14,6 @@
     <string name="button_next">Next</string>
     <string name="button_continue">Continue</string>
     <string name="onboarding1_contentDescription">Man looking at graph</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

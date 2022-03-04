@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="@+id/title"
         app:layout_constraintStart_toStartOf="@+id/title"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_onboarding1"
+        app:srcCompat="@drawable/ic_onboarding2"
         tools:ignore="ImageContrastCheck" />
 
 
@@ -41,7 +41,7 @@
         android:layout_marginEnd="@dimen/large"
         android:gravity="center_horizontal|top"
         android:lineSpacingExtra="1sp"
-        android:text="@string/onboarding1_title"
+        android:text="@string/onboarding2_title"
         android:textAppearance="@style/onBoarding.title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
         android:layout_marginTop="@dimen/small"
         android:gravity="center_horizontal|top"
         android:lineSpacingExtra="1sp"
-        android:text="@string/onboarding1_desc"
+        android:text="@string/onboarding2_desc"
         android:textAppearance="@style/onBoarding.description"
         app:layout_constraintEnd_toEndOf="@+id/title"
         app:layout_constraintStart_toStartOf="@+id/title"
@@ -75,14 +75,14 @@
         <View
             android:layout_width="7dp"
             android:layout_height="7dp"
-            android:background="@drawable/ellipse_small_filled" />
+            android:background="@drawable/ellipse_small" />
 
         <View
             android:layout_width="7dp"
             android:layout_height="7dp"
             android:layout_marginStart="@dimen/small"
             android:layout_marginEnd="@dimen/small"
-            android:background="@drawable/ellipse_small" />
+            android:background="@drawable/ellipse_small_filled" />
 
         <View
             android:layout_width="7dp"
