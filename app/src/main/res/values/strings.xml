@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">EM Money</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="onboarding1_title">Best app for Transform small investment to big amount</string>
+    <string name="onboarding2_title">Different Opportunities for your investment</string>
+    <string name="onboarding3_title">Best App provide you investment Safety</string>
+
+    <string name="onboarding1_desc">Long term investors, pro traders or part-time traders can choose across various asset classes and create a customised portfolio. All from one platform.</string>
+    <string name="onboarding2_desc">Since 2016, we are enabling lakhs of Indians to achieve their financial dreams.</string>
+    <string name="onboarding3_desc">A whole ecosystem of modern investment apps tailored to specific needs, built from the ground up</string>
+
+    <string name="button_next">Next</string>
+    <string name="button_continue">Continue</string>
+    <string name="onboarding1_contentDescription">Man looking at graph</string>
+</resources>

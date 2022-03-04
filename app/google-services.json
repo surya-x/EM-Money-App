@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770247450950",
+    "project_id": "em-money-001",
+    "storage_bucket": "em-money-001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770247450950:android:0ffaed23a4dd79d60b4547",
+        "android_client_info": {
+          "package_name": "in.emmoney.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770247450950-f44r220buuvsi49ld4k51f9uvlk2c21u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbLgFV_t1QgdafSzpGOvBeOGreaZ15cqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770247450950-f44r220buuvsi49ld4k51f9uvlk2c21u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
