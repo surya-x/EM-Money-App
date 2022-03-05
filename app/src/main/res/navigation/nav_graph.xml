@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboarding1"
-        android:name="in.emmoney.app.loginandregister.presentation.Onboarding1"
+        android:name="in.emmoney.app.loginandregister.presentation.onboarding.Onboarding1Fragment"
         android:label="Onboarding1"
         tools:layout="@layout/fragment_onboarding1">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboarding2"
-        android:name="in.emmoney.app.loginandregister.presentation.Onboarding2"
+        android:name="in.emmoney.app.loginandregister.presentation.onboarding.Onboarding2Fragment"
         android:label="Onboarding2" >
         <action
             android:id="@+id/action_onboarding2_to_onboarding3"
@@ -39,6 +39,6 @@
     </fragment>
     <fragment
         android:id="@+id/onboarding3"
-        android:name="in.emmoney.app.loginandregister.presentation.Onboarding3"
+        android:name="in.emmoney.app.loginandregister.presentation.onboarding.Onboarding3Fragment"
         android:label="Onboarding3" />
 </navigation>

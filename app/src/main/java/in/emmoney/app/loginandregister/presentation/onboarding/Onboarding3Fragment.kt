@@ -1,4 +1,4 @@
-package `in`.emmoney.app.loginandregister.presentation
+package `in`.emmoney.app.loginandregister.presentation.onboarding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import `in`.emmoney.app.R
 
-class Onboarding3 : Fragment() {
+class Onboarding3Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
