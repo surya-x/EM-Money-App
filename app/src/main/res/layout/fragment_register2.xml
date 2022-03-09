@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/action_bar_dummy"
+        style="@style/action_bar_dummy"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/action_bar_dummy"
+        android:paddingHorizontal="@dimen/Xlarge"
+        android:text="@string/register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_dummy">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:paddingHorizontal="6dp"
+            android:text="@string/sign_up_to"
+            android:textAppearance="@style/login.title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:text="@string/app_name"
+            android:textAppearance="@style/login.title"
+            android:textColor="@color/orange_theme" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/login.description"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/small"
+        android:gravity="center_horizontal|top"
+        android:text="@string/login.phone.desc"
+        app:layout_constraintEnd_toEndOf="@id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <EditText
+        android:id="@+id/first_name"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:hint="Fist Name"
+        android:background="@drawable/phone_block"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        tools:text="Surya" />
+
+    <EditText
+        android:id="@+id/last_name"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/size12"
+        android:layout_marginEnd="@dimen/large"
+        android:hint="Last Name"
+        android:background="@drawable/phone_block"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_name"
+        tools:text="Kumar" />
+
+    <LinearLayout
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/size12"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_name">
+
+
+        <TextView
+            android:id="@+id/country_code"
+            style="@style/login.entry_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
+            android:letterSpacing="0.1"
+            android:text="@string/country_code_india" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:paddingHorizontal="@dimen/medium"
+            app:boxBackgroundMode="none"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            tools:text="7891892889" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/otp_phone"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/size12"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:inputType="number"
+        android:maxLength="4"
+        android:hint="OTP Received"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        tools:text="1234" />
+
+    <EditText
+        android:id="@+id/otp_email"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/size12"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otp_phone"
+        tools:text="kCdr4d" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sign_up"
+        style="@style/onBoarding.button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/medium"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/button_border"
+        android:text="@string/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otp_email"
+        tools:ignore="TextContrastCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

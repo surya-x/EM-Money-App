@@ -12,8 +12,8 @@
     <string name="onboarding2_desc">Since 2016, we are enabling lakhs of Indians to achieve their financial dreams.</string>
     <string name="onboarding3_desc">A whole ecosystem of modern investment apps tailored to specific needs, built from the ground up</string>
 
-    <string name="login" />
-    <string name="login.title">Login to </string>
+    <string name="login">Login</string>
+    <string name="login_to">Login to </string>
     <string name="login.phone.desc">Lorem Ipsum is simply dummy text of dummy text of typesetting industry</string>
     <string name="login.email.desc">Lorem Ipsum is simply dummy text of dummy text of typesetting industry</string>
 
@@ -35,6 +35,11 @@
     <string name="didnt_receive_the_code">Didn\'t receive the code?</string>
     <string name="re_send">Re-Send</string>
     <string name="submit">submit</string>
+    <string name="sign_up_to">Sign up to</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="register">Register</string>
+    <string name="sign_up">Sign Up</string>
 
 
 </resources>

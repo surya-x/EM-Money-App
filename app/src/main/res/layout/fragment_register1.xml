@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/ellipse_1"
+        android:layout_width="585dp"
+        android:layout_height="585dp"
+        android:layout_marginStart="-140dp"
+        android:layout_marginTop="-270dp"
+        android:background="@drawable/ellipse_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="92dp"
+        android:contentDescription="@string/logo_contentDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_logo"
+        tools:ignore="ImageContrastCheck" />
+
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:paddingHorizontal="6dp"
+            android:text="@string/sign_up_to"
+            android:textAppearance="@style/login.title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:text="@string/app_name"
+            android:textAppearance="@style/login.title"
+            android:textColor="@color/orange_theme" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/login.description"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/small"
+        android:gravity="center_horizontal|top"
+        android:text="@string/login.phone.desc"
+        app:layout_constraintEnd_toEndOf="@id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <EditText
+        android:id="@+id/email"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        tools:text="kumarsurya.developer@gmail.com" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/login.entry_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/medium"
+        android:hint="Password"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:inputType="textPassword"
+        android:paddingHorizontal="@dimen/medium"
+        android:windowSoftInputMode="adjustPan|adjustResize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        tools:text="iampassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continue_button"
+        style="@style/onBoarding.button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/medium"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/button_border"
+        android:text="@string/button_continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password"
+        tools:ignore="TextContrastCheck" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--<LinearLayout-->
+<!--android:id="@+id/already_have_account"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginStart="@dimen/large"-->
+<!--android:layout_marginEnd="@dimen/large"-->
+<!--android:layout_marginBottom="@dimen/large"-->
+<!--android:gravity="center_horizontal|top"-->
+<!--android:orientation="horizontal"-->
+<!--app:layout_constraintBottom_toBottomOf="parent"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent">-->
+
+<!--<TextView-->
+<!--    style="@style/login.description"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:gravity="center_horizontal|top"-->
+<!--    android:paddingHorizontal="4dp"-->
+<!--    android:text="@string/already_have_an_account" />-->
+
+<!--<TextView-->
+<!--    style="@style/login.description"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:alpha="1"-->
+<!--    android:gravity="center_horizontal|top"-->
+<!--    android:text="@string/login"-->
+<!--    android:textColor="@color/orange_theme" />-->
+
+<!--</LinearLayout>-->

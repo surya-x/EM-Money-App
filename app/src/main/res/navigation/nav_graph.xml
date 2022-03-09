@@ -61,9 +61,50 @@
             app:destination="@id/loginUsingPhoneOTPFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_loginUsingPhoneFragment_to_loginUsingEmailFragment"
+            app:destination="@id/loginUsingEmailFragment" />
+        <action
+            android:id="@+id/action_loginUsingPhoneFragment_to_register1Fragment"
+            app:destination="@id/register1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/loginUsingPhoneOTPFragment"
         android:name="in.emmoney.app.loginandregister.presentation.LoginUsingPhoneOTPFragment"
-        android:label="LoginUsingPhoneOTPFragment" />
+        android:label="LoginUsingPhoneOTPFragment" >
+        <action
+            android:id="@+id/action_loginUsingPhoneOTPFragment_to_successLoginFragment"
+            app:destination="@id/successLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginUsingEmailFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingEmailFragment"
+        android:label="LoginUsingEmailFragment" >
+        <action
+            android:id="@+id/action_loginUsingEmailFragment_to_successLoginFragment"
+            app:destination="@id/successLoginFragment" />
+        <action
+            android:id="@+id/action_loginUsingEmailFragment_to_register1Fragment"
+            app:destination="@id/register1Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register1Fragment"
+        android:name="in.emmoney.app.loginandregister.presentation.Register1Fragment"
+        android:label="Register1Fragment" >
+        <action
+            android:id="@+id/action_register1Fragment_to_register2Fragment"
+            app:destination="@id/register2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register2Fragment"
+        android:name="in.emmoney.app.loginandregister.presentation.Register2Fragment"
+        android:label="Register2Fragment" >
+        <action
+            android:id="@+id/action_register2Fragment_to_successLoginFragment"
+            app:destination="@id/successLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successLoginFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.SuccessLoginFragment"
+        android:label="SuccessLoginFragment" />
 </navigation>
