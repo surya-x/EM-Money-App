@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/ellipse_1"
+        android:layout_width="585dp"
+        android:layout_height="585dp"
+        android:layout_marginStart="-140dp"
+        android:layout_marginTop="-270dp"
+        android:background="@drawable/ellipse_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="92dp"
+        android:contentDescription="@string/logo_contentDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/app_logo"
+        tools:ignore="ImageContrastCheck" />
+
+
+
+    <LinearLayout
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/large"
+    android:layout_marginTop="@dimen/large"
+    android:layout_marginEnd="@dimen/large"
+    android:gravity="center_horizontal|top"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:paddingHorizontal="4dp"
+            android:text="@string/login.title"
+            android:textAppearance="@style/login.title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:text="@string/app_name"
+            android:textAppearance="@style/login.title"
+            android:textColor="@color/orange_theme" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/login.description"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="@dimen/small"
+        android:gravity="center_horizontal|top"
+        android:text="@string/login.phone.desc"
+        app:layout_constraintEnd_toEndOf="@id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <LinearLayout
+        android:id="@+id/phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/phone_block"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/medium"
+        app:layout_constraintTop_toBottomOf="@+id/description">
+
+
+        <TextView
+            android:id="@+id/country_code"
+            style="@style/login.phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
+            android:letterSpacing="0.1"
+            android:text="@string/country_code_india" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            style="@style/login.phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/medium"
+            android:inputType="phone"
+            app:boxBackgroundMode="none"
+            android:background="@null"
+            tools:text="7891892889" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/request_otp"
+        style="@style/onBoarding.button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/large"
+        android:background="@drawable/button_border"
+        android:text="@string/request_otp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumber"
+        tools:ignore="TextContrastCheck" />
+
+
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/horizontal_line"
+        app:layout_constraintBottom_toTopOf="@id/create_new_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/request_otp" />
+
+    <TextView
+        android:id="@+id/or"
+        style="@style/login.description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4sp"
+        android:translationY="-2sp"
+        android:gravity="center"
+        android:alpha="0.4"
+        android:letterSpacing="0.1"
+        android:text="OR"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/or_block"/>
+
+
+    <LinearLayout
+        android:id="@+id/continue_with_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginBottom="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/login.description"
+            android:gravity="center_horizontal|top"
+            android:paddingHorizontal="4dp"
+            android:text="@string/not_registered_yet"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/login.description"
+            android:gravity="center_horizontal|top"
+            android:text="@string/create_an_account"
+            android:alpha="1"
+            android:textColor="@color/orange_theme" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/create_new_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginBottom="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/login.description"
+            android:gravity="center_horizontal|top"
+            android:paddingHorizontal="4dp"
+            android:text="@string/not_registered_yet"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/login.description"
+            android:gravity="center_horizontal|top"
+            android:text="@string/create_an_account"
+            android:alpha="1"
+            android:textColor="@color/orange_theme" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--<TextView-->
+<!--android:id="@+id/textView_phone"-->
+<!--style="@style/login.phone"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginStart="@dimen/large"-->
+<!--android:layout_marginTop="@dimen/large"-->
+<!--android:layout_marginEnd="@dimen/large"-->
+<!--android:background="@drawable/phone_block"-->
+<!--android:gravity="left|center_vertical"-->
+<!--android:letterSpacing="0.1"-->
+<!--android:paddingHorizontal="@dimen/large"-->
+<!--android:textAppearance="@style/login.phone"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintStart_toStartOf="parent"-->
+<!--app:layout_constraintTop_toBottomOf="@+id/description"-->
+<!--tools:text="7891892889" />-->

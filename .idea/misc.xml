@@ -7,12 +7,17 @@
         <entry key="app/src/main/res/drawable/buttonborder.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ellipse1.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ellipsesmall.xml" value="0.321025641025641" />
+        <entry key="app/src/main/res/drawable/horizontal_line.xml" value="0.34444444444444444" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/onboarding1.xml" value="0.321025641025641" />
+        <entry key="app/src/main/res/drawable/or_block.xml" value="0.34444444444444444" />
+        <entry key="app/src/main/res/drawable/phone_block.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/splash1.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/font/poppins.xml" value="0.33487179487179486" />
+        <entry key="app/src/main/res/font/poppins500.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins600.xml" value="0.32222222222222224" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/fragment_login_using_phone.xml" value="0.3311965811965812" />
         <entry key="app/src/main/res/layout/fragment_onboarding1.xml" value="0.23981481481481481" />
         <entry key="app/src/main/res/layout/fragment_onboarding2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_onboarding3.xml" value="0.29583333333333334" />
