@@ -28,7 +28,7 @@ class SplashScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imageView.setOnClickListener{
-            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+            findNavController().navigate(R.id.action_splashScreen_to_loginUsingPhoneFragment)
         }
         binding.root.setOnClickListener {
             findNavController().navigate(R.id.action_splashScreen_to_onboarding1)

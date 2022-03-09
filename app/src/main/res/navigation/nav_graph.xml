@@ -15,6 +15,11 @@
             app:destination="@id/onboarding1"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_splashScreen_to_loginUsingPhoneFragment"
+            app:destination="@id/loginUsingPhoneFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/onboarding1"
@@ -40,5 +45,25 @@
     <fragment
         android:id="@+id/onboarding3"
         android:name="in.emmoney.app.loginandregister.presentation.onboarding.Onboarding3Fragment"
-        android:label="Onboarding3" />
+        android:label="Onboarding3" >
+        <action
+            android:id="@+id/action_onboarding3_to_loginUsingPhoneFragment"
+            app:destination="@id/loginUsingPhoneFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginUsingPhoneFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingPhoneFragment"
+        android:label="LoginUsingPhoneFragment" >
+        <action
+            android:id="@+id/action_loginUsingPhoneFragment_to_loginUsingPhoneOTPFragment"
+            app:destination="@id/loginUsingPhoneOTPFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginUsingPhoneOTPFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingPhoneOTPFragment"
+        android:label="LoginUsingPhoneOTPFragment" />
 </navigation>

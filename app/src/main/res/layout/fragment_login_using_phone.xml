@@ -30,19 +30,18 @@
         tools:ignore="ImageContrastCheck" />
 
 
-
     <LinearLayout
-    android:id="@+id/title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/large"
-    android:layout_marginTop="@dimen/large"
-    android:layout_marginEnd="@dimen/large"
-    android:gravity="center_horizontal|top"
-    android:orientation="horizontal"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginEnd="@dimen/large"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -82,11 +81,11 @@
         android:layout_marginTop="@dimen/large"
         android:layout_marginEnd="@dimen/large"
         android:background="@drawable/phone_block"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="@dimen/medium"
         app:layout_constraintTop_toBottomOf="@+id/description">
 
 
@@ -104,10 +103,11 @@
             style="@style/login.phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/medium"
-            android:inputType="phone"
-            app:boxBackgroundMode="none"
             android:background="@null"
+            android:inputType="phone"
+            android:paddingHorizontal="@dimen/medium"
+            app:boxBackgroundMode="none"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             tools:text="7891892889" />
     </LinearLayout>
 
@@ -144,80 +144,87 @@
         style="@style/login.description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:lineSpacingExtra="4sp"
-        android:translationY="-2sp"
-        android:gravity="center"
         android:alpha="0.4"
+        android:background="@drawable/or_block"
+        android:gravity="center"
         android:letterSpacing="0.1"
-        android:text="OR"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/or"
         android:textSize="12sp"
+        android:translationY="0sp"
         app:layout_constraintBottom_toTopOf="@id/horizontal_line"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/or_block"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <LinearLayout
         android:id="@+id/continue_with_email"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large"
-        android:layout_marginBottom="@dimen/large"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/large"
         android:gravity="center_horizontal|top"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/horizontal_line">
 
         <TextView
+            style="@style/login.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/login.description"
-            android:gravity="center_horizontal|top"
-            android:paddingHorizontal="4dp"
-            android:text="@string/not_registered_yet"/>
+            android:layout_gravity="center_vertical"
+            android:text="Continue with" />
+
+        <View
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:background="@drawable/ic_message_alt_fill"
+            android:gravity="top"
+            android:paddingHorizontal="4dp" />
 
         <TextView
+            style="@style/login.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/login.description"
-            android:gravity="center_horizontal|top"
-            android:text="@string/create_an_account"
+            android:layout_gravity="center_vertical"
             android:alpha="1"
-            android:textColor="@color/orange_theme" />
+            android:fontFamily="@font/poppins600"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/create_new_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large"
-        android:layout_marginBottom="@dimen/large"
         android:layout_marginEnd="@dimen/large"
+        android:layout_marginBottom="@dimen/large"
         android:gravity="center_horizontal|top"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            style="@style/login.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/login.description"
             android:gravity="center_horizontal|top"
             android:paddingHorizontal="4dp"
-            android:text="@string/not_registered_yet"/>
+            android:text="@string/not_registered_yet" />
 
         <TextView
+            style="@style/login.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/login.description"
+            android:alpha="1"
             android:gravity="center_horizontal|top"
             android:text="@string/create_an_account"
-            android:alpha="1"
             android:textColor="@color/orange_theme" />
 
     </LinearLayout>
@@ -226,20 +233,20 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--<TextView-->
-<!--android:id="@+id/textView_phone"-->
-<!--style="@style/login.phone"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:layout_marginStart="@dimen/large"-->
-<!--android:layout_marginTop="@dimen/large"-->
-<!--android:layout_marginEnd="@dimen/large"-->
-<!--android:background="@drawable/phone_block"-->
-<!--android:gravity="left|center_vertical"-->
-<!--android:letterSpacing="0.1"-->
-<!--android:paddingHorizontal="@dimen/large"-->
-<!--android:textAppearance="@style/login.phone"-->
-<!--app:layout_constraintEnd_toEndOf="parent"-->
-<!--app:layout_constraintStart_toStartOf="parent"-->
-<!--app:layout_constraintTop_toBottomOf="@+id/description"-->
-<!--tools:text="7891892889" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/textView_phone"-->
+    <!--style="@style/login.phone"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="@dimen/large"-->
+    <!--android:layout_marginTop="@dimen/large"-->
+    <!--android:layout_marginEnd="@dimen/large"-->
+    <!--android:background="@drawable/phone_block"-->
+    <!--android:gravity="left|center_vertical"-->
+    <!--android:letterSpacing="0.1"-->
+    <!--android:paddingHorizontal="@dimen/large"-->
+    <!--android:textAppearance="@style/login.phone"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/description"-->
+    <!--tools:text="7891892889" />-->

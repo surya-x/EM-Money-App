@@ -8,6 +8,30 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="loginUsingPhoneFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="92" />
+                            <option name="y" value="332" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="loginUsingPhoneOTPFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="315" />
+                            <option name="y" value="329" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="onboarding1">
                     <value>
                       <LayoutPositions>
@@ -16,6 +40,15 @@
                             <option name="x" value="102" />
                             <option name="y" value="-311" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_onboarding1_to_onboarding2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -28,6 +61,15 @@
                             <option name="x" value="332" />
                             <option name="y" value="-309" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_onboarding2_to_onboarding3">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

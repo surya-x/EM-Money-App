@@ -4,6 +4,6 @@
     <dimen name="medium">16dp</dimen>
     <dimen name="large">24dp</dimen>
     <dimen name="Xlarge">32dp</dimen>
-
+    <dimen name="XXlarge">42dp</dimen>
     <dimen name="margin28">28dp</dimen>
 </resources>
