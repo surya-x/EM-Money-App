@@ -16,4 +16,5 @@ class SuccessLoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_success_login, container, false)
     }
 
+
 }

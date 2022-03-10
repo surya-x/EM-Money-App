@@ -30,4 +30,9 @@ class Onboarding3Fragment : Fragment() {
             findNavController().navigate(R.id.action_onboarding3_to_loginUsingPhoneFragment)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

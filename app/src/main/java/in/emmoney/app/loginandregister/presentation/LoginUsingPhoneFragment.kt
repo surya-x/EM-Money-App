@@ -38,4 +38,9 @@ class LoginUsingPhoneFragment : Fragment() {
             findNavController().navigate(R.id.action_loginUsingPhoneFragment_to_register1Fragment)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

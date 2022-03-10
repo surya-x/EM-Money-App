@@ -29,4 +29,9 @@ class Register2Fragment : Fragment() {
             findNavController().navigate(R.id.action_register2Fragment_to_successLoginFragment)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

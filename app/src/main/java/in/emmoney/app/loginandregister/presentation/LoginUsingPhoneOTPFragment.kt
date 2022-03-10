@@ -30,4 +30,9 @@ class LoginUsingPhoneOTPFragment : Fragment() {
             findNavController().navigate(R.id.action_loginUsingPhoneOTPFragment_to_successLoginFragment)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

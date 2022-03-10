@@ -55,7 +55,12 @@ dependencies {
     // Declare the dependency for the Firebase Authentication library
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.1")
+
+    // dependencies for Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

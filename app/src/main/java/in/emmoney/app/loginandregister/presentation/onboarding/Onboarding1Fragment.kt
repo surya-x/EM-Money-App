@@ -29,4 +29,9 @@ class Onboarding1Fragment : Fragment() {
             findNavController().navigate(R.id.action_onboarding1_to_onboarding2)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
