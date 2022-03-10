@@ -9,6 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import `in`.emmoney.app.MainActivity
+import android.os.Handler
+import android.os.Looper
+
 
 class SplashScreen : Fragment() {
 
@@ -21,25 +27,44 @@ class SplashScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
         // Inflating the layout
         _binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
         return binding.root
+    }
 
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            updateUI();
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imageView.setOnClickListener{
-            findNavController().navigate(R.id.action_splashScreen_to_loginUsingPhoneFragment)
-        }
         binding.root.setOnClickListener {
             findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
         }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            /* Create an Intent that will start the Menu-Activity. */
+            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+        }, 3000)
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun updateUI(){
+        findNavController().navigate(R.id.action_splashScreen_to_successLoginFragment)
     }
 }
