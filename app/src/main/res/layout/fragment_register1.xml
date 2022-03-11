@@ -73,44 +73,66 @@
         app:layout_constraintStart_toStartOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-
-    <EditText
-        android:id="@+id/email"
-        style="@style/login.entry_block"
+    <LinearLayout
+        android:id="@+id/phoneNumberLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large"
         android:layout_marginTop="@dimen/large"
         android:layout_marginEnd="@dimen/large"
         android:background="@drawable/phone_block"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        android:textColorHint="#4D000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        tools:text="kumarsurya.developer@gmail.com" />
+        app:layout_constraintTop_toBottomOf="@+id/description">
+
+
+        <TextView
+            android:id="@+id/country_code"
+            style="@style/login.phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.2"
+            android:letterSpacing="0.1"
+            android:text="@string/country_code_india" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            style="@style/login.phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:inputType="phone"
+            android:hint="Phone Number"
+            android:textColorHint="#4D000000"
+            android:paddingHorizontal="@dimen/medium"
+            app:boxBackgroundMode="none"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            tools:text="7891892889" />
+    </LinearLayout>
+
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/otp_phone"
         style="@style/login.entry_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/medium"
-        android:hint="Password"
-        android:textColorHint="#4D000000"
+        android:layout_marginTop="@dimen/size12"
         android:layout_marginEnd="@dimen/large"
         android:background="@drawable/phone_block"
-        android:inputType="textPassword"
+        android:inputType="number"
+        android:maxLength="6"
+        android:hint="OTP Received"
+        android:textColorHint="#4D000000"
         android:paddingHorizontal="@dimen/medium"
         android:windowSoftInputMode="adjustPan|adjustResize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        tools:text="iampassword" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberLinear"
+        tools:text="123456" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/continue_button"
@@ -124,10 +146,8 @@
         android:text="@string/button_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintTop_toBottomOf="@id/otp_phone"
         tools:ignore="TextContrastCheck" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
