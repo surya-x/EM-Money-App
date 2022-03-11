@@ -21,6 +21,7 @@ class SplashScreen : Fragment() {
     private lateinit var auth: FirebaseAuth
     private var _binding: FragmentSplashScreenBinding? = null
     private val binding get() = _binding!!
+    private var onView: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +55,9 @@ class SplashScreen : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             /* Create an Intent that will start the Menu-Activity. */
-            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+            if(onView) {
+                findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+            }
         }, 3000)
 
     }
@@ -62,6 +65,7 @@ class SplashScreen : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        onView = false
     }
 
     private fun updateUI(){
