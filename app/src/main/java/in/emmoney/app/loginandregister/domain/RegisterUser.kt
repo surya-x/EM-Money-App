@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class RegisterUser {
-    private lateinit var auth: FirebaseAuth
+    private var mAuth = FirebaseAuth.getInstance()
 
     private fun createAccount(activity: Activity, userRegistering: UserRegistering) : FirebaseAuth {
         val email = userRegistering.email
@@ -15,12 +15,12 @@ class RegisterUser {
         Log.d(TAG, "createAccount: $email")
 
 //        showProgressBar()
-        auth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
+                    val user = mAuth.currentUser
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -30,7 +30,7 @@ class RegisterUser {
                 }
 //                hideProgressBar()
             }
-        return auth
+        return mAuth
     }
 
     private fun validateForm(): Boolean {

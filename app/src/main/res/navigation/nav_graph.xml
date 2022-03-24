@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginUsingPhoneFragment"
-        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingPhoneFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.login.LoginPhoneFragment"
         android:label="LoginUsingPhoneFragment" >
         <action
             android:id="@+id/action_loginUsingPhoneFragment_to_loginUsingPhoneOTPFragment"
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginUsingPhoneOTPFragment"
-        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingPhoneOTPFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.login.LoginPhoneOTPFragment"
         android:label="LoginUsingPhoneOTPFragment" >
         <action
             android:id="@+id/action_loginUsingPhoneOTPFragment_to_successLoginFragment"
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginUsingEmailFragment"
-        android:name="in.emmoney.app.loginandregister.presentation.LoginUsingEmailFragment"
+        android:name="in.emmoney.app.loginandregister.presentation.login.LoginEmailFragment"
         android:label="LoginUsingEmailFragment" >
         <action
             android:id="@+id/action_loginUsingEmailFragment_to_successLoginFragment"
@@ -87,7 +87,7 @@
     </fragment>
     <fragment
         android:id="@+id/register1Fragment"
-        android:name="in.emmoney.app.loginandregister.presentation.Register1Fragment"
+        android:name="in.emmoney.app.loginandregister.presentation.register.Register1Fragment"
         android:label="Register1Fragment" >
         <action
             android:id="@+id/action_register1Fragment_to_register2Fragment"
@@ -95,7 +95,7 @@
     </fragment>
     <fragment
         android:id="@+id/register2Fragment"
-        android:name="in.emmoney.app.loginandregister.presentation.Register2Fragment"
+        android:name="in.emmoney.app.loginandregister.presentation.register.Register2Fragment"
         android:label="Register2Fragment" >
         <action
             android:id="@+id/action_register2Fragment_to_successLoginFragment"
