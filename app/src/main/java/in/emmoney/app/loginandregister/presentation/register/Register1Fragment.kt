@@ -1,7 +1,6 @@
 package `in`.emmoney.app.loginandregister.presentation.register
 
 import `in`.emmoney.app.databinding.FragmentRegister1Binding
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -60,7 +59,10 @@ class Register1Fragment : Fragment() {
         binding.otpPhone.doAfterTextChanged { otp -> viewModel.otpPhone = otp.toString().trim() }
 
         binding.continueButton.setOnClickListener {
-            viewModel.sendOtp()
+            viewModel.onSendOtpClicked()
+        }
+        binding.sendOtpButton.setOnClickListener {
+            // TODO
         }
     }
 
