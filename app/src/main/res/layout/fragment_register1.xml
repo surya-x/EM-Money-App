@@ -1,185 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/splash1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/ellipse_1"
-        android:layout_width="585dp"
-        android:layout_height="585dp"
-        android:layout_marginStart="-140dp"
-        android:layout_marginTop="-270dp"
-        android:background="@drawable/ellipse_large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="92dp"
-        android:contentDescription="@string/logo_contentDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app_logo"
-        tools:ignore="ImageContrastCheck" />
+        <variable
+            name="viewModel"
+            type="in.emmoney.app.loginandregister.presentation.register.Register1ViewModel" />
 
+        <import type="android.view.View" />
+    </data>
 
-    <LinearLayout
-        android:id="@+id/title"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/large"
-        android:layout_marginEnd="@dimen/large"
-        android:gravity="center_horizontal|top"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="in.emmoney.app.loginandregister.presentation.register.Register1Fragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|top"
-            android:paddingHorizontal="6dp"
-            android:text="@string/sign_up_to"
-            android:textAppearance="@style/login.title" />
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|top"
-            android:text="@string/app_name"
-            android:textAppearance="@style/login.title"
-            android:textColor="@color/orange_theme" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/description"
-        style="@style/login.description"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="@dimen/small"
-        android:gravity="center_horizontal|top"
-        android:text="@string/login.phone.desc"
-        app:layout_constraintEnd_toEndOf="@id/title"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <LinearLayout
-        android:id="@+id/phoneNumberLinear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/large"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/phone_block"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description">
-
-
-        <TextView
-            android:id="@+id/country_code"
-            style="@style/login.phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.2"
-            android:letterSpacing="0.1"
-            android:text="@string/country_code_india" />
-
-        <EditText
-            android:id="@+id/phone_number"
-            style="@style/login.phone"
+            android:id="@+id/splash1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:inputType="phone"
-            android:hint="Phone Number"
-            android:textColorHint="#4D000000"
-            android:paddingHorizontal="@dimen/medium"
-            app:boxBackgroundMode="none"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-            tools:text="7891892889" />
-    </LinearLayout>
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/ellipse_1"
+                android:layout_width="585dp"
+                android:layout_height="585dp"
+                android:layout_marginStart="-140dp"
+                android:layout_marginTop="-270dp"
+                android:background="@drawable/ellipse_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginTop="92dp"
+                android:contentDescription="@string/logo_contentDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/app_logo"
+                tools:ignore="ImageContrastCheck" />
 
 
-    <EditText
-        android:id="@+id/otp_phone"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/size12"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/phone_block"
-        android:inputType="number"
-        android:maxLength="6"
-        android:hint="OTP Received"
-        android:textColorHint="#4D000000"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberLinear"
-        tools:text="123456" />
+            <LinearLayout
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/large"
+                android:layout_marginEnd="@dimen/large"
+                android:gravity="center_horizontal|top"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ellipse_1">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/continue_button"
-        style="@style/onBoarding.button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/medium"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/button_border"
-        android:text="@string/button_continue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/otp_phone"
-        tools:ignore="TextContrastCheck" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|top"
+                    android:paddingHorizontal="6dp"
+                    android:text="@string/sign_up_to"
+                    android:textAppearance="@style/login.title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|top"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/login.title"
+                    android:textColor="@color/orange_theme" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description"
+                style="@style/login.description"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="@dimen/small"
+                android:gravity="center_horizontal|top"
+                android:text="@string/login.phone.desc"
+                app:layout_constraintEnd_toEndOf="@id/title"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <LinearLayout
+                android:id="@+id/phoneNumberLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/large"
+                android:layout_marginEnd="@dimen/large"
+                android:background="@drawable/phone_block"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/country_code"
+                    style="@style/login.phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.2"
+                    android:letterSpacing="0.1"
+                    android:text="@string/country_code_india" />
 
-<!--<LinearLayout-->
-<!--android:id="@+id/already_have_account"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:layout_marginStart="@dimen/large"-->
-<!--android:layout_marginEnd="@dimen/large"-->
-<!--android:layout_marginBottom="@dimen/large"-->
-<!--android:gravity="center_horizontal|top"-->
-<!--android:orientation="horizontal"-->
-<!--app:layout_constraintBottom_toBottomOf="parent"-->
-<!--app:layout_constraintEnd_toEndOf="parent"-->
-<!--app:layout_constraintStart_toStartOf="parent">-->
+                <EditText
+                    android:id="@+id/phone_number"
+                    style="@style/login.phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:paddingHorizontal="@dimen/medium"
+                    android:textColorHint="#4D000000"
+                    android:windowSoftInputMode="adjustPan|adjustResize"
+                    app:boxBackgroundMode="none"
+                    tools:text="7891892889" />
+            </LinearLayout>
 
-<!--<TextView-->
-<!--    style="@style/login.description"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:gravity="center_horizontal|top"-->
-<!--    android:paddingHorizontal="4dp"-->
-<!--    android:text="@string/already_have_an_account" />-->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/send_otp_button"
+                style="@style/onBoarding.button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_marginEnd="@dimen/large"
+                android:background="@drawable/button_border"
+                android:text="Send OTP"
+                android:onClick="@{()->viewModel.sendOtp()}"
+                android:enabled="@{viewModel.sendOtpButtonEnabled}"
+                android:visibility="@{viewModel.otpRequestSent ? View.GONE : View.VISIBLE }"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberLinear"
+                tools:ignore="TextContrastCheck" />
 
-<!--<TextView-->
-<!--    style="@style/login.description"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:alpha="1"-->
-<!--    android:gravity="center_horizontal|top"-->
-<!--    android:text="@string/login"-->
-<!--    android:textColor="@color/orange_theme" />-->
+            <EditText
+                android:id="@+id/otp_phone"
+                style="@style/login.phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/size12"
+                android:layout_marginEnd="@dimen/large"
+                android:background="@drawable/phone_block"
+                android:hint="OTP"
+                android:inputType="phone"
+                android:letterSpacing="0.5"
+                android:maxLength="6"
+                android:paddingHorizontal="@dimen/medium"
+                android:textColorHint="#4D000000"
+                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                android:windowSoftInputMode="adjustPan|adjustResize"
+                app:boxBackgroundMode="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberLinear"
+                tools:text="123456" />
 
-<!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/otp_status"
+                style="@style/login.description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small"
+                android:layout_marginTop="@dimen/small"
+                android:gravity="top"
+                android:text="@{viewModel.otpStatus}"
+                android:textColor="@color/green"
+                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                app:layout_constraintEnd_toEndOf="@id/otp_phone"
+                app:layout_constraintStart_toStartOf="@+id/otp_phone"
+                app:layout_constraintTop_toBottomOf="@+id/otp_phone"
+                tools:text="@string/otp_sent" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/continue_button"
+                style="@style/onBoarding.button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_marginEnd="@dimen/large"
+                android:background="@drawable/button_border"
+                android:enabled="@{viewModel.continueButtonEnabled}"
+                android:text="@string/button_continue"
+                android:onClick="@{()->viewModel.checkOtp()}"
+                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otp_status"
+                tools:ignore="TextContrastCheck" />
+
+            <LinearLayout
+                android:id="@+id/resend_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/large"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_marginEnd="@dimen/large"
+                android:gravity="end|top"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/continue_button">
+
+                <TextView
+                    style="@style/login.description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|top"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/didnt_receive_the_code" />
+
+                <TextView
+                    android:id="@+id/resend"
+                    style="@style/login.description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:onClick="@{()->viewModel.resendOtp()}"
+                    android:enabled="@{viewModel.resendEnabled}"
+                    android:gravity="end|top"
+                    android:text="@string/re_send"
+                    android:textColor="@color/orange_theme" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/already_have_account"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="@dimen/large"-->
+    <!--android:layout_marginEnd="@dimen/large"-->
+    <!--android:layout_marginBottom="@dimen/large"-->
+    <!--android:gravity="center_horizontal|top"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--<TextView-->
+    <!--    style="@style/login.description"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:gravity="center_horizontal|top"-->
+    <!--    android:paddingHorizontal="4dp"-->
+    <!--    android:text="@string/already_have_an_account" />-->
+
+    <!--<TextView-->
+    <!--    style="@style/login.description"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:alpha="1"-->
+    <!--    android:gravity="center_horizontal|top"-->
+    <!--    android:text="@string/login"-->
+    <!--    android:textColor="@color/orange_theme" />-->
+
+    <!--</LinearLayout>-->
