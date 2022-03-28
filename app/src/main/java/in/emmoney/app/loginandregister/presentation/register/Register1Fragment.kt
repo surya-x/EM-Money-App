@@ -91,6 +91,7 @@ class Register1Fragment : Fragment() {
 
         binding.continueButton.setOnClickListener {
             if(viewModel.isValidOtp()){
+                viewModel.setProgress(true)
                 viewModel.verifyOtp()
             }
         }
@@ -122,15 +123,17 @@ class Register1Fragment : Fragment() {
         /* To know when the OTP code has been sent by firebase in AuthRepo */
         viewModel.getVerificationId().observe(viewLifecycleOwner) { vCode ->
             vCode?.let {
-                Log.d("Register", "request send observer activated ")
+                Log.d("register", "request send observer activated ")
 
                 viewModel.setProgress(false)
+                viewModel.setVCodeNull()
 
                 binding.sendOtpButton.visibility = View.GONE
                 binding.continueButton.visibility = View.VISIBLE
                 binding.otpStatus.visibility = View.VISIBLE
                 binding.otpPhone.visibility = View.VISIBLE
                 binding.resend.visibility = View.VISIBLE
+                binding.phoneNumber.isEnabled = false
             }
         }
 
@@ -145,6 +148,7 @@ class Register1Fragment : Fragment() {
 
         viewModel.userProfileGot.observe(viewLifecycleOwner) { userId ->
             if (!userId.isNullOrEmpty() && viewModel.getCredential().value?.smsCode.isNullOrEmpty()) {
+                Log.d(TAG, "GOT userProfile, moving to next fragment")
                 toastLong(
                     requireContext(),
                     "Authenticated successfully using Instant verification"

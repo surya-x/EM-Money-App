@@ -2,6 +2,7 @@ package `in`.emmoney.app.loginandregister.data
 
 import `in`.emmoney.app.MainActivity
 import `in`.emmoney.app.common.utils.Utils.toast
+import `in`.emmoney.app.common.utils.Utils.toastLong
 import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
 import android.app.Activity
 import android.content.Context
@@ -48,12 +49,12 @@ class AuthRepo constructor(
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("TAG", "signInWithCredential:success")
+                    Log.d(TAG, "signInWithCredential:success")
                     taskResult.value = task
                 } else {
-                    Log.w("TAG", "signInWithCredential:failure", task.exception)
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException)
-                        toast(context, "Invalid verification code!")
+                        toastLong(context, "Invalid OTP, Please Try Again!")
                     failedState.value = LogInFailedState.SignIn
                 }
             }

@@ -121,16 +121,17 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
         this.setCredential(credential)
     }
 
-    fun setCredential(credential: PhoneAuthCredential) {
-        setVProgress(true)
+    private fun setCredential(credential: PhoneAuthCredential) {
+        setProgress(true)
         authRepo.setCredential(credential)
     }
 
-    fun checkOtp() {
-        Log.d(TAG, "continue button clicked")
-//        _otpRequestSent.value = false
-        _continueButtonEnabled.value = false
-    }
+//    fun checkOtp() {
+//        Log.d(TAG, "continue button clicked")
+////        _otpRequestSent.value = false
+//        _continueButtonEnabled.value = false
+//    }
+
 
     fun setProgress(show: Boolean) {
         progress.value = show
@@ -143,23 +144,23 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     fun resendClicked() {
         _resendEnabled.value = false
 //        if (canResend) {
-//            setVProgress(true)
+//            // setVProgress(true)
+//            setProgress(true)
 //            sendOtp(activity)
 //        }
     }
 
-    fun setVProgress(show: Boolean) {
-        verifyProgress.value = show
-    }
-
-    fun getVProgress(): LiveData<Boolean> {
-        return verifyProgress
-    }
+//    fun setVProgress(show: Boolean) {
+//        verifyProgress.value = show
+//    }
+//
+//    fun getVProgress(): LiveData<Boolean> {
+//        return verifyProgress
+//    }
 
     fun getCredential(): LiveData<PhoneAuthCredential> {
         return authRepo.getCredential()
     }
-
 
 
     fun setVCodeNull() {
@@ -185,17 +186,22 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 
         val db = FirebaseFirestore.getInstance()
         val user = taskId.result?.user
-        val noteRef = db.document("Users/" + user?.uid)
+        val noteRef = db.document("users/" + user?.uid)
+
         noteRef.get()
             .addOnSuccessListener { data ->
-                setVProgress(false)
+                Log.d(TAG, "noteRef.get():Success")
+//                setVProgress(false)
+                setProgress(false)
                 progress.value = false
                 if (data.exists()) {  //already created user
                     //save profile in preference
                 }
                 userProfileGot.value = user?.uid
             }.addOnFailureListener { e ->
-                setVProgress(false)
+                Log.d(TAG, "noteRef.get():Failure: $e")
+//                setVProgress(false)
+                setProgress(false)
                 progress.value = false
                 Toast.makeText(
                     context,

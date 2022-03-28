@@ -39,10 +39,10 @@ class SplashScreen : Fragment() {
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            updateUI();
-        }
+//        val currentUser = auth.currentUser
+//        if(currentUser != null){
+//            updateUI();
+//        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
