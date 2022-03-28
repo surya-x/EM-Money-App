@@ -3,6 +3,8 @@ package `in`.emmoney.app.common.presentation
 import `in`.emmoney.app.R
 import `in`.emmoney.app.databinding.FragmentSplashScreenBinding
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import `in`.emmoney.app.MainActivity
-import android.os.Handler
-import android.os.Looper
 
 
 class SplashScreen : Fragment() {

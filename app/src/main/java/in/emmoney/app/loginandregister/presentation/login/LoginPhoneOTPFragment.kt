@@ -1,13 +1,12 @@
 package `in`.emmoney.app.loginandregister.presentation.login
 
+import `in`.emmoney.app.R
+import `in`.emmoney.app.databinding.FragmentLoginUsingPhoneOTPBinding
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import `in`.emmoney.app.R
-import `in`.emmoney.app.databinding.FragmentLoginUsingPhoneBinding
-import `in`.emmoney.app.databinding.FragmentLoginUsingPhoneOTPBinding
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
 class LoginPhoneOTPFragment : Fragment() {

@@ -142,8 +142,7 @@
                 android:layout_marginEnd="@dimen/large"
                 android:background="@drawable/button_border"
                 android:text="Send OTP"
-                android:enabled="@{viewModel.sendOtpButtonEnabled}"
-                android:visibility="@{viewModel.otpRequestSent ? View.GONE : View.VISIBLE }"
+                android:visibility="@{View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumberLinear"
@@ -164,7 +163,7 @@
                 android:maxLength="6"
                 android:paddingHorizontal="@dimen/medium"
                 android:textColorHint="#4D000000"
-                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                android:visibility="@{View.GONE}"
                 android:windowSoftInputMode="adjustPan|adjustResize"
                 app:boxBackgroundMode="none"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,13 +179,12 @@
                 android:layout_marginHorizontal="@dimen/small"
                 android:layout_marginTop="@dimen/small"
                 android:gravity="top"
-                android:text="@{viewModel.otpStatus.toString()}"
+                android:text="@string/otp_sent"
                 android:textColor="@color/green"
-                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                android:visibility="@{View.GONE}"
                 app:layout_constraintEnd_toEndOf="@id/otp_phone"
                 app:layout_constraintStart_toStartOf="@+id/otp_phone"
-                app:layout_constraintTop_toBottomOf="@+id/otp_phone"
-                tools:text="@string/otp_sent" />
+                app:layout_constraintTop_toBottomOf="@+id/otp_phone" />
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -201,7 +199,7 @@
                 android:enabled="@{viewModel.continueButtonEnabled}"
                 android:text="@string/button_continue"
                 android:onClick="@{()->viewModel.checkOtp()}"
-                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE}"
+                android:visibility="@{View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/otp_status"
@@ -216,7 +214,7 @@
                 android:layout_marginEnd="@dimen/large"
                 android:gravity="end|top"
                 android:orientation="horizontal"
-                android:visibility="@{viewModel.otpRequestSent ? View.VISIBLE : View.GONE }"
+                android:visibility="@{View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/continue_button">
@@ -235,7 +233,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="1"
-                    android:onClick="@{()->viewModel.resendOtp()}"
+                    android:onClick="@{()->viewModel.resendClicked()}"
                     android:enabled="@{viewModel.resendEnabled}"
                     android:gravity="end|top"
                     android:text="@string/re_send"

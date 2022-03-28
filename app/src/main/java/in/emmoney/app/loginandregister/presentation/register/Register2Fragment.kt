@@ -1,20 +1,13 @@
 package `in`.emmoney.app.loginandregister.presentation.register
 
+import `in`.emmoney.app.R
+import `in`.emmoney.app.databinding.FragmentRegister2Binding
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import `in`.emmoney.app.R
-import `in`.emmoney.app.databinding.FragmentRegister2Binding
-import android.util.Log
-import java.util.concurrent.TimeUnit
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.*
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class Register2Fragment : Fragment() {
 

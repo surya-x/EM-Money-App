@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginEmailViewModel(application: Application) : AndroidViewModel(application) {

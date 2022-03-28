@@ -3,7 +3,6 @@ import `in`.emmoney.app.loginandregister.domain.models.UserRegistering
 import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 class RegisterUser {
     private var mAuth = FirebaseAuth.getInstance()

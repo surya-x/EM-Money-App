@@ -1,40 +1,42 @@
 package `in`.emmoney.app.loginandregister.presentation.register
 
 import `in`.emmoney.app.R
+import `in`.emmoney.app.common.utils.Utils
+import `in`.emmoney.app.common.utils.Utils.toastLong
+import `in`.emmoney.app.loginandregister.data.AuthRepo
+import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
 import android.app.Activity
 import android.app.Application
-import android.telephony.PhoneNumberUtils
+import android.content.Context
 import android.util.Log
-import android.util.Patterns
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthProvider
-import com.google.firebase.auth.PhoneAuthOptions
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
-import java.util.concurrent.TimeUnit
+import com.google.firebase.firestore.FirebaseFirestore
 
-class Register1ViewModel(private val myApplication: Application) : AndroidViewModel(myApplication){
 
-    private var mAuth = FirebaseAuth.getInstance()
+//class Register1ViewModel
+//constructor(private val context: Context, private val authRepo: AuthRepo) :
+//    ViewModel() {
+class Register1ViewModel(application: Application) : AndroidViewModel(application) {
+
+    private lateinit var activity: Activity
+
+    private val context: Context = getApplication<Application>().applicationContext
+
+    private val authRepo: AuthRepo = AuthRepo(context)
+
+//    private var mAuth = FirebaseAuth.getInstance()
 
     var phoneNumber: String = ""
     var otpPhone: String = ""
     val TAG = "register"
 
-    private val _otpRequestSent = MutableLiveData<Boolean>().apply { value = false }
-    val otpRequestSent: LiveData<Boolean>
-        get() = _otpRequestSent
-
-    private val _otpStatus = MutableLiveData<String>()
-    val otpStatus: LiveData<String>
-        get() = _otpStatus
-
-    private val _sendOtpButtonEnabled = MutableLiveData<Boolean>().apply { value = true }
-    val sendOtpButtonEnabled: LiveData<Boolean>
-        get() = _sendOtpButtonEnabled
 
     private val _continueButtonEnabled = MutableLiveData<Boolean>().apply { value = true }
     val continueButtonEnabled: LiveData<Boolean>
@@ -52,46 +54,159 @@ class Register1ViewModel(private val myApplication: Application) : AndroidViewMo
     val otpError: LiveData<String>
         get() = _otpError
 
-    fun onSendOtpClicked() {
-        Log.d(TAG, "send otp called")
+    val userProfileGot = MutableLiveData("")
 
-        if (!PhoneNumberUtils.isGlobalPhoneNumber("+91$phoneNumber")) {
-            Log.d(TAG, "Phone number pattern mismatched")
-            _phoneNumberError.value = myApplication.getString(R.string.malformed_phone_error)
-        }
-        else {
-            Log.d(TAG, "Phone number pattern matched, sending OTP")
+    private val progress = MutableLiveData(false)
 
-            _sendOtpButtonEnabled.value = false
-            // not here in callback -- temp TODO
-            _otpRequestSent.value = true
-            _otpStatus.value = R.string.otp_sent.toString()
+    private val verifyProgress = MutableLiveData(false)
 
-            sendOtp()
+    var verifyCode: String = ""
+
+
+    fun isValidPhone(): Boolean {
+//        return if (!PhoneNumberUtils.isGlobalPhoneNumber("+91$phoneNumber")) {
+
+        phoneNumber = phoneNumber.filter { !it.isWhitespace() }
+        return when {
+            phoneNumber.length != 10 || !android.util.Patterns.PHONE.matcher(phoneNumber)
+                .matches() -> {
+                Log.d(TAG, "Phone number pattern mismatched")
+                _phoneNumberError.value = context.getString(R.string.malformed_phone_error)
+                false
+            }
+            Utils.isNoInternet(context) -> {
+                Log.d(TAG, "No Internet Connection!")
+                toastLong(context,"No Internet Connection!")
+                false
+            }
+            else -> {
+                Log.d(TAG, "Phone number pattern matched, returning true")
+                true
+            }
         }
     }
 
-    private fun sendOtp() {
+    fun isValidOtp(): Boolean {
+        otpPhone = otpPhone.filter { !it.isWhitespace() }
+        return when {
+            otpPhone.length != 6 -> {
+                Log.d(TAG, "OTP length mismatched")
+                _otpError.value = context.getString(R.string.malformed_otp_error)
+                false
+            }
+            Utils.isNoInternet(context) -> {
+                Log.d(TAG, "No Internet Connection!")
+                toastLong(context,"No Internet Connection!")
+                false
+            }
+            else -> {
+                Log.d(TAG, "isValidOtp, returning true")
+                true
+            }
+        }
+    }
+
+    fun sendOtp(activity: Activity) {
+        Log.d(TAG, "viewmodel.sendOtp called")
+
         val phoneWithCountryCode = "+91$phoneNumber"
-//        val options = PhoneAuthOptions.newBuilder(mAuth)
-//            .setPhoneNumber(phoneWithCountryCode)       // Phone number to verify
-//            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-//            .setActivity()                 // Activity (for callback binding)
-//            .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
-//            .build()
 
+        authRepo.clearOldAuth()
+        this.activity = activity
+        authRepo.sendOtp(activity, phoneWithCountryCode)
+    }
 
-//        PhoneAuthProvider.verifyPhoneNumber(options)
+    fun verifyOtp(){
+        val credential = PhoneAuthProvider.getCredential(this.verifyCode, this.otpPhone)
+        this.setCredential(credential)
+    }
+
+    fun setCredential(credential: PhoneAuthCredential) {
+        setVProgress(true)
+        authRepo.setCredential(credential)
     }
 
     fun checkOtp() {
-        Log.d(TAG, "continue button clicked ${otpRequestSent.value}")
+        Log.d(TAG, "continue button clicked")
 //        _otpRequestSent.value = false
         _continueButtonEnabled.value = false
-
     }
 
-    fun resendOtp(){
+    fun setProgress(show: Boolean) {
+        progress.value = show
+    }
+
+    fun getProgress(): LiveData<Boolean> {
+        return progress
+    }
+
+    fun resendClicked() {
         _resendEnabled.value = false
+//        if (canResend) {
+//            setVProgress(true)
+//            sendOtp(activity)
+//        }
+    }
+
+    fun setVProgress(show: Boolean) {
+        verifyProgress.value = show
+    }
+
+    fun getVProgress(): LiveData<Boolean> {
+        return verifyProgress
+    }
+
+    fun getCredential(): LiveData<PhoneAuthCredential> {
+        return authRepo.getCredential()
+    }
+
+
+
+    fun setVCodeNull() {
+        verifyCode = authRepo.getVCode().value!!
+        authRepo.setVCodeNull()
+    }
+
+    fun getVerificationId(): MutableLiveData<String> {
+        return authRepo.getVCode()
+    }
+
+    fun getTaskResult(): LiveData<Task<AuthResult>> {
+        return authRepo.getTaskResult()
+    }
+
+    fun getFailed(): LiveData<LogInFailedState> {
+        return authRepo.getFailed()
+    }
+
+    fun fetchUser(taskId: Task<AuthResult>) {
+        // TODO: temp log + update section
+        Log.d(TAG, "credentials verified, fetch user called")
+
+        val db = FirebaseFirestore.getInstance()
+        val user = taskId.result?.user
+        val noteRef = db.document("Users/" + user?.uid)
+        noteRef.get()
+            .addOnSuccessListener { data ->
+                setVProgress(false)
+                progress.value = false
+                if (data.exists()) {  //already created user
+                    //save profile in preference
+                }
+                userProfileGot.value = user?.uid
+            }.addOnFailureListener { e ->
+                setVProgress(false)
+                progress.value = false
+                Toast.makeText(
+                    context,
+                    e.message.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    fun clearAll() {
+        userProfileGot.value = null
+        authRepo.clearOldAuth()
     }
 }

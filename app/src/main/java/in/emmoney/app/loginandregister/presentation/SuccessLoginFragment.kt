@@ -1,11 +1,11 @@
 package `in`.emmoney.app.loginandregister.presentation
 
+import `in`.emmoney.app.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import `in`.emmoney.app.R
+import androidx.fragment.app.Fragment
 
 class SuccessLoginFragment : Fragment() {
     override fun onCreateView(

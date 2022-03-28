@@ -43,6 +43,8 @@
     <string name="sign_up">Sign Up</string>
 
 
-    <string name="malformed_phone_error">This phone number is badly formatted.</string>
+    <string name="malformed_phone_error">Invalid Phone Number</string>
+    <string name="malformed_otp_error">Invalid OTP format</string>
+    <string name="otp_sent_failed">Invalid Request</string>
 
 </resources>

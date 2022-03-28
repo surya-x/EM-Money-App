@@ -1,9 +1,10 @@
 package `in`.emmoney.app
 
 import `in`.emmoney.app.databinding.ActivityMainBinding
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+
 
 class MainActivity : AppCompatActivity() {
 

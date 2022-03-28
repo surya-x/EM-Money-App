@@ -1,5 +1,10 @@
 package `in`.emmoney.app.loginandregister.presentation.register
 
+import `in`.emmoney.app.R
+import `in`.emmoney.app.common.presentation.CustomProgressView
+import `in`.emmoney.app.common.utils.Utils.dismissIfShowing
+import `in`.emmoney.app.common.utils.Utils.toastLong
+import `in`.emmoney.app.common.utils.Utils.toggle
 import `in`.emmoney.app.databinding.FragmentRegister1Binding
 import android.os.Bundle
 import android.util.Log
@@ -10,23 +15,27 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthProvider
+
 
 class Register1Fragment : Fragment() {
 
     private val auth = FirebaseAuth.getInstance()
 
-    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    private var storedVerificationId: String? = ""
-    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private val TAG = "register"
 
-    private var isOtpVerified: Boolean = false
-    private val TAG = "phone"
+    private var progressView: CustomProgressView? = null
 
     private var _binding: FragmentRegister1Binding? = null
     private val binding get() = _binding!!
+
     private lateinit var viewModel: Register1ViewModel
+
+//    private val viewModel by activityViewModels<Register1ViewModel>()
+//    private val viewModel: Register1ViewModel by activityViewModels()
+//    private val viewModel: Register1ViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +44,19 @@ class Register1Fragment : Fragment() {
     ): View? {
 
         _binding = FragmentRegister1Binding.inflate(inflater, container, false)
+
         viewModel = ViewModelProvider(this).get(Register1ViewModel::class.java)
+
+
+//        viewModel = ViewModelProvider(requireActivity()).get(Register1ViewModel::class.java)
+//        viewModel =
+//            ViewModelProvider(
+//                this,
+//                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication(context))
+//            )[Register1ViewModel::class.java]
+//        viewModel = ViewModelProviders.of(this).get(Register1ViewModel::class.java)
+
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -45,48 +66,102 @@ class Register1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressView = CustomProgressView(requireContext())
+
         setupListeners()
         setupObservers()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun setupListeners() {
-        binding.phoneNumber.doAfterTextChanged { phone -> viewModel.phoneNumber = phone.toString().trim() }
-        binding.otpPhone.doAfterTextChanged { otp -> viewModel.otpPhone = otp.toString().trim() }
+        binding.phoneNumber.doAfterTextChanged { phone ->
+            viewModel.phoneNumber = phone.toString()
+        }
+        binding.otpPhone.doAfterTextChanged { otp ->
+            viewModel.otpPhone = otp.toString()
+        }
+
+        binding.sendOtpButton.setOnClickListener {
+            // TODO: 1. Check for no internet
+            //       2. country code*
+            if (viewModel.isValidPhone()) {
+                viewModel.setProgress(true)
+                viewModel.sendOtp(requireActivity())
+            }
+        }
 
         binding.continueButton.setOnClickListener {
-            viewModel.onSendOtpClicked()
-        }
-        binding.sendOtpButton.setOnClickListener {
-            // TODO
+            if(viewModel.isValidOtp()){
+                viewModel.verifyOtp()
+            }
         }
     }
 
     private fun setupObservers() {
-        viewModel.phoneNumberError.observe(this, Observer {
+        viewModel.phoneNumberError.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 binding.phoneNumber.error = it
             }
         })
-        viewModel.otpError.observe(this, Observer {
+
+        viewModel.otpError.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 binding.otpPhone.error = it
             }
         })
-        viewModel.otpRequestSent.observe(this) {
-            if (it) {
+
+        viewModel.getProgress().observe(viewLifecycleOwner) {
+            progressView?.toggle(it)
+        }
+
+        viewModel.otpError.observe(viewLifecycleOwner, Observer {
+            if (it.isNotEmpty()) {
+                binding.otpPhone.error = it
+            }
+        })
+
+        /* To know when the OTP code has been sent by firebase in AuthRepo */
+        viewModel.getVerificationId().observe(viewLifecycleOwner) { vCode ->
+            vCode?.let {
                 Log.d("Register", "request send observer activated ")
+
+                viewModel.setProgress(false)
+
                 binding.sendOtpButton.visibility = View.GONE
                 binding.continueButton.visibility = View.VISIBLE
                 binding.otpStatus.visibility = View.VISIBLE
                 binding.otpPhone.visibility = View.VISIBLE
                 binding.resend.visibility = View.VISIBLE
-
             }
+        }
+
+        viewModel.getFailed().observe(viewLifecycleOwner) {
+            progressView?.dismiss()
+        }
+
+        viewModel.getTaskResult().observe(viewLifecycleOwner) { taskId ->
+            if (taskId != null && viewModel.getCredential().value?.smsCode.isNullOrEmpty())
+                viewModel.fetchUser(taskId)
+        }
+
+        viewModel.userProfileGot.observe(viewLifecycleOwner) { userId ->
+            if (!userId.isNullOrEmpty() && viewModel.getCredential().value?.smsCode.isNullOrEmpty()) {
+                toastLong(
+                    requireContext(),
+                    "Authenticated successfully using Instant verification"
+                )
+                findNavController().navigate(R.id.action_register1Fragment_to_register2Fragment)
+            }
+        }
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        try {
+            progressView?.dismissIfShowing()
+            _binding = null
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

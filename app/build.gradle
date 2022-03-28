@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'kotlin-kapt'
+//    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -65,4 +66,8 @@ dependencies {
     // dependencies for Firebase Authentication and Cloud Firestore
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // HILT
+//    implementation("com.google.dagger:hilt-android:2.38.1")
+//    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 }
