@@ -29,6 +29,10 @@ class LoginEmailFragment : Fragment() {
 
         // Inflate the layout for this fragment
         _binding = FragmentLoginUsingEmailBinding.inflate(inflater, container, false)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 

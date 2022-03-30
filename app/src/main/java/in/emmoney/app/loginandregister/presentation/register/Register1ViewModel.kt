@@ -9,12 +9,14 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,20 +33,19 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val authRepo: AuthRepo = AuthRepo(context)
 
-//    private var mAuth = FirebaseAuth.getInstance()
+    val TAG = "register"
 
     var phoneNumber: String = ""
     var otpPhone: String = ""
-    val TAG = "register"
+
+    var phoneWithCountryCode = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    var email: String = ""
+    var password: String = ""
 
 
-    private val _continueButtonEnabled = MutableLiveData<Boolean>().apply { value = true }
-    val continueButtonEnabled: LiveData<Boolean>
-        get() = _continueButtonEnabled
-
-    private val _resendEnabled = MutableLiveData<Boolean>().apply { value = true }
-    val resendEnabled: LiveData<Boolean>
-        get() = _resendEnabled
+    // Error Live data's
 
     private val _phoneNumberError = MutableLiveData<String>()
     val phoneNumberError: LiveData<String>
@@ -54,11 +55,26 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     val otpError: LiveData<String>
         get() = _otpError
 
+    private val _firstNameError = MutableLiveData<String>()
+    val firstNameError: LiveData<String>
+        get() = _firstNameError
+
+    private val _lastNameError = MutableLiveData<String>()
+    val lastNameError: LiveData<String>
+        get() = _lastNameError
+
+    private val _emailError = MutableLiveData<String>()
+    val emailError: LiveData<String>
+        get() = _emailError
+
+    private val _passwordError = MutableLiveData<String>()
+    val passwordError: LiveData<String>
+        get() = _passwordError
+
+
     val userProfileGot = MutableLiveData("")
 
     private val progress = MutableLiveData(false)
-
-    private val verifyProgress = MutableLiveData(false)
 
     var verifyCode: String = ""
 
@@ -100,16 +116,60 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
                 false
             }
             else -> {
-                Log.d(TAG, "isValidOtp, returning true")
+                Log.d(TAG, "isValidOtp format, returning true")
                 true
             }
         }
     }
 
+    fun isValidEntries(): Boolean {
+        firstName = firstName.trim()
+        lastName = lastName.trim()
+        email = email.trim()
+
+        return when {
+            firstName.isEmpty() -> {
+                Log.d(TAG, "firstname is empty")
+                _firstNameError.value = context.getString(R.string.malformed_fname_error)
+                false
+            }
+            lastName.isEmpty() -> {
+                Log.d(TAG, "lastname is empty")
+                _lastNameError.value = context.getString(R.string.malformed_lname_error)
+                false
+            }
+            email.isEmpty() -> {
+                Log.d(TAG, "email is empty")
+                _emailError.value = context.getString(R.string.malformed_email_empty_error)
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                Log.d(TAG, "email pattern mismatched")
+                _emailError.value = context.getString(R.string.malformed_email_error)
+                false
+            }
+            password.length < 6 -> {
+                Log.d(TAG, "password is empty")
+                _passwordError.value = context.getString(R.string.malformed_password_error)
+                false
+            }
+            Utils.isNoInternet(context) -> {
+                Log.d(TAG, "No Internet Connection!")
+                Utils.toastLong(context, "No Internet Connection!")
+                false
+            }
+            else -> {
+                Log.d(TAG, "isValidEntries, returning true")
+                true
+            }
+        }
+    }
+
+
     fun sendOtp(activity: Activity) {
         Log.d(TAG, "viewmodel.sendOtp called")
 
-        val phoneWithCountryCode = "+91$phoneNumber"
+        phoneWithCountryCode = "+91$phoneNumber"
 
         authRepo.clearOldAuth()
         this.activity = activity
@@ -119,6 +179,32 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     fun verifyOtp(){
         val credential = PhoneAuthProvider.getCredential(this.verifyCode, this.otpPhone)
         this.setCredential(credential)
+    }
+
+    fun linkUserWithEmail(){
+        email = email.trim()
+        authRepo.linkUserWithEmail(email, password)
+    }
+
+    fun createUserInDb(user: FirebaseUser) {
+        Log.d(TAG, "createUser called")
+
+        val userid = user.uid
+
+        var userPhoneNumber = ""
+        if (user.phoneNumber != null)
+            userPhoneNumber = user.phoneNumber!!
+        Log.d(TAG, " ->  viewmodel phoneNumber is $userPhoneNumber")
+
+        val items = HashMap<String, Any>()
+        items["userID"] = userid
+        items["firstName"] = firstName
+        items["lastName"] = lastName
+        items["email"] = email
+        items["phoneNumber"] = userPhoneNumber
+        items["active"] = true
+
+        authRepo.saveUserToDatabase(user, items)
     }
 
     private fun setCredential(credential: PhoneAuthCredential) {
@@ -142,7 +228,7 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun resendClicked() {
-        _resendEnabled.value = false
+//        _resendEnabled.value = false
 //        if (canResend) {
 //            // setVProgress(true)
 //            setProgress(true)
@@ -162,7 +248,6 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
         return authRepo.getCredential()
     }
 
-
     fun setVCodeNull() {
         verifyCode = authRepo.getVCode().value!!
         authRepo.setVCodeNull()
@@ -180,10 +265,17 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
         return authRepo.getFailed()
     }
 
+    fun getEmailAuthTaskResult(): LiveData<Task<AuthResult>> {
+        return authRepo.getEmailAuthTaskResult()
+    }
+
+    fun isUserRegistered(): LiveData<Boolean> {
+        return authRepo.isUserRegistered()
+    }
+
     fun fetchUser(taskId: Task<AuthResult>) {
         // TODO: temp log + update section
         Log.d(TAG, "credentials verified, fetch user called")
-
         val db = FirebaseFirestore.getInstance()
         val user = taskId.result?.user
         val noteRef = db.document("users/" + user?.uid)
@@ -194,10 +286,15 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 //                setVProgress(false)
                 setProgress(false)
                 progress.value = false
-                if (data.exists()) {  //already created user
-                    //save profile in preference
+                if (data.exists()) {
+                    // User with credential already created in Firestore DB
+                    // TODO: may have to tweak according to firebase reaction on diff cases
+                    Log.d(TAG, "data.exists():true -> user already in firestore")
+                    toastLong(context, "USER ALREADY EXISTS!! Try Logging in" )
                 }
-                userProfileGot.value = user?.uid
+                else {
+                    userProfileGot.value = user?.uid
+                }
             }.addOnFailureListener { e ->
                 Log.d(TAG, "noteRef.get():Failure: $e")
 //                setVProgress(false)

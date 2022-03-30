@@ -1,184 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/splash1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/action_bar_dummy"
-        style="@style/action_bar_dummy"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="in.emmoney.app.loginandregister.presentation.register.Register1ViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/splash1"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/action_bar_dummy"
-        android:paddingHorizontal="@dimen/Xlarge"
-        android:text="@string/register"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/large"
-        android:layout_marginEnd="@dimen/large"
-        android:gravity="center_horizontal|top"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action_bar_dummy">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/action_bar_dummy"
+            style="@style/action_bar_dummy"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/action_bar_dummy"
+            android:paddingHorizontal="@dimen/Xlarge"
+            android:text="@string/register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/large"
+            android:layout_marginEnd="@dimen/large"
             android:gravity="center_horizontal|top"
-            android:paddingHorizontal="6dp"
-            android:text="@string/sign_up_to"
-            android:textAppearance="@style/login.title" />
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_bar_dummy">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|top"
+                android:paddingHorizontal="6dp"
+                android:text="@string/sign_up_to"
+                android:textAppearance="@style/login.title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|top"
+                android:text="@string/app_name"
+                android:textAppearance="@style/login.title"
+                android:textColor="@color/orange_theme" />
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/description"
+            style="@style/login.description"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/small"
             android:gravity="center_horizontal|top"
-            android:text="@string/app_name"
-            android:textAppearance="@style/login.title"
-            android:textColor="@color/orange_theme" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/description"
-        style="@style/login.description"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="@dimen/small"
-        android:gravity="center_horizontal|top"
-        android:text="@string/login.phone.desc"
-        app:layout_constraintEnd_toEndOf="@id/title"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+            android:text="@string/login.phone.desc"
+            app:layout_constraintEnd_toEndOf="@id/title"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
-    <EditText
-        android:id="@+id/first_name"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/large"
-        android:layout_marginEnd="@dimen/large"
-        android:hint="Fist Name"
-        android:textColorHint="#4D000000"
-        android:background="@drawable/phone_block"
-        android:inputType="textPersonName"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        tools:text="Surya" />
+        <EditText
+            android:id="@+id/first_name"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/large"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/phone_block"
+            android:hint="Fist Name"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="@dimen/medium"
+            android:textColorHint="#4D000000"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            tools:text="Surya" />
 
-    <EditText
-        android:id="@+id/last_name"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/size12"
-        android:layout_marginEnd="@dimen/large"
-        android:hint="Last Name"
-        android:textColorHint="#4D000000"
-        android:background="@drawable/phone_block"
-        android:inputType="textPersonName"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name"
-        tools:text="Kumar" />
-
-
-
-    <EditText
-        android:id="@+id/email"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/size12"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/phone_block"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        android:textColorHint="#4D000000"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name"
-        tools:text="kumarsurya.developer@gmail.com" />
+        <EditText
+            android:id="@+id/last_name"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/size12"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/phone_block"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="@dimen/medium"
+            android:textColorHint="#4D000000"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_name"
+            tools:text="Kumar" />
 
 
-    <EditText
-        android:id="@+id/password"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/size12"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/phone_block"
-        android:inputType="textPassword"
-        android:maxLength="4"
-        android:hint="Password"
-        android:textColorHint="#4D000000"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        tools:text="******" />
-
-    <EditText
-        android:id="@+id/otp_email"
-        style="@style/login.entry_block"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/size12"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/phone_block"
-        android:inputType="text"
-        android:hint="Pan Card ID"
-        android:textColorHint="#4D000000"
-        android:paddingHorizontal="@dimen/medium"
-        android:windowSoftInputMode="adjustPan|adjustResize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        tools:text="kCdr4d" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sign_up"
-        style="@style/onBoarding.button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large"
-        android:layout_marginTop="@dimen/medium"
-        android:layout_marginEnd="@dimen/large"
-        android:background="@drawable/button_border"
-        android:text="@string/sign_up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/otp_email"
-        tools:ignore="TextContrastCheck" />
+        <EditText
+            android:id="@+id/email"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/size12"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/phone_block"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="@dimen/medium"
+            android:textColorHint="#4D000000"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/last_name"
+            tools:text="kumarsurya.developer@gmail.com" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/password"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/size12"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/phone_block"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="@dimen/medium"
+            android:textColorHint="#4D000000"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            tools:text="******" />
+
+        <EditText
+            android:id="@+id/otp_email"
+            style="@style/login.entry_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/size12"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/phone_block"
+            android:hint="Pan Card ID"
+            android:inputType="text"
+            android:paddingHorizontal="@dimen/medium"
+            android:textColorHint="#4D000000"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:text="kCdr4d" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sign_up"
+            style="@style/onBoarding.button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/medium"
+            android:layout_marginEnd="@dimen/large"
+            android:background="@drawable/button_border"
+            android:text="@string/sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otp_email"
+            tools:ignore="TextContrastCheck" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

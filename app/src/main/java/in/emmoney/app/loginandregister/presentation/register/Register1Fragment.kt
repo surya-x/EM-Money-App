@@ -132,8 +132,8 @@ class Register1Fragment : Fragment() {
                 binding.continueButton.visibility = View.VISIBLE
                 binding.otpStatus.visibility = View.VISIBLE
                 binding.otpPhone.visibility = View.VISIBLE
-                binding.resend.visibility = View.VISIBLE
-                binding.phoneNumber.isEnabled = false
+                binding.resendText.visibility = View.VISIBLE
+
             }
         }
 
@@ -142,8 +142,12 @@ class Register1Fragment : Fragment() {
         }
 
         viewModel.getTaskResult().observe(viewLifecycleOwner) { taskId ->
-            if (taskId != null && viewModel.getCredential().value?.smsCode.isNullOrEmpty())
+            Log.d(TAG, "getTaskResult observer finds changes")
+
+            if (taskId != null && viewModel.getCredential().value?.smsCode.isNullOrEmpty()) {
+                Log.d(TAG, "getTaskResult observer finds changes")
                 viewModel.fetchUser(taskId)
+            }
         }
 
         viewModel.userProfileGot.observe(viewLifecycleOwner) { userId ->
@@ -151,7 +155,7 @@ class Register1Fragment : Fragment() {
                 Log.d(TAG, "GOT userProfile, moving to next fragment")
                 toastLong(
                     requireContext(),
-                    "Authenticated successfully using Instant verification"
+                    "OTP Verified"
                 )
                 findNavController().navigate(R.id.action_register1Fragment_to_register2Fragment)
             }

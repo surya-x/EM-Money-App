@@ -1,9 +1,9 @@
 package `in`.emmoney.app.loginandregister.data
 
-import `in`.emmoney.app.MainActivity
 import `in`.emmoney.app.common.utils.Utils.toast
 import `in`.emmoney.app.common.utils.Utils.toastLong
 import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
+import `in`.emmoney.app.loginandregister.domain.models.UserModel
 import android.app.Activity
 import android.content.Context
 import android.util.Log
@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 
 class AuthRepo constructor(
@@ -21,6 +22,8 @@ class AuthRepo constructor(
 
     private val auth = FirebaseAuth.getInstance()
 
+    private val database = FirebaseFirestore.getInstance()
+
     private val verificationId: MutableLiveData<String> = MutableLiveData()
 
     val credential: MutableLiveData<PhoneAuthCredential> = MutableLiveData()
@@ -29,9 +32,13 @@ class AuthRepo constructor(
 
     private val failedState: MutableLiveData<LogInFailedState> = MutableLiveData()
 
+    private val emailAuthTaskResult: MutableLiveData<Task<AuthResult>> = MutableLiveData()
+
+    private val isUserRegistered: MutableLiveData<Boolean> = MutableLiveData(false)
+
 
     fun sendOtp(activity: Activity, number: String) {
-        Log.d(TAG, "AuthRepo.sendOtp called")
+        Log.d(TAG, "AuthRepo.sendOtp called, calling firebase verify method")
 
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(number)
@@ -40,12 +47,11 @@ class AuthRepo constructor(
             .setCallbacks(callbacks)
             .build()
 
-        Log.d(TAG, "calling firebase verify method")
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
+    /* To create and mark entry in firebase auth database with the phone number*/
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        Log.d(TAG, "calling signInWithPhoneAuthCredentials")
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -57,6 +63,47 @@ class AuthRepo constructor(
                         toastLong(context, "Invalid OTP, Please Try Again!")
                     failedState.value = LogInFailedState.SignIn
                 }
+            }
+    }
+
+    fun linkUserWithEmail (email: String, password: String) {
+        val emailCredential = EmailAuthProvider.getCredential(email, password)
+
+        auth.currentUser!!.linkWithCredential(emailCredential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "linkWithCredential:success")
+                    Log.d(TAG, "user registered with email:$email")
+
+                    val user = task.result?.user
+                    Log.d(TAG, "user: ${user!!.uid}")
+
+                    emailAuthTaskResult.value = task
+                } else {
+                    Log.w(TAG, "linkWithCredential:failure", task.exception)
+                    toastLong(context, "Unable to Register, please try again after sometime")
+                }
+            }
+    }
+
+    fun saveUserToDatabase(user: FirebaseUser, items: HashMap<String, Any>) {
+        database.collection("users").document(user.uid).set(items)
+            .addOnSuccessListener {
+                val userModel = UserModel()
+                userModel.userID = user.uid
+                userModel.email = items["email"].toString()
+                userModel.firstName = items["firstName"].toString()
+                userModel.lastName = items["lastName"].toString()
+                userModel.phoneNumber = items["phoneNumber"].toString()
+                userModel.active = true
+//                MyApplication.currentUser = userModel
+
+                Log.d(TAG, "saveUserToDatabase:success")
+
+                isUserRegistered.value = true
+            }.addOnFailureListener {
+                Log.d(TAG, "saveUserToDatabase:failure", it)
+                toastLong(context, "Unable to Register, please try again after sometime")
             }
     }
 
@@ -89,14 +136,23 @@ class AuthRepo constructor(
         return failedState
     }
 
+    fun getEmailAuthTaskResult(): LiveData<Task<AuthResult>> {
+        return emailAuthTaskResult
+    }
+
+    fun isUserRegistered(): LiveData<Boolean> {
+        return isUserRegistered
+    }
+
+
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 
         /* Firebase verifies the otp automatically */
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             Log.d(TAG, "callback: onVerificationCompleted: $credential")
             this@AuthRepo.credential.value = credential
-            signInWithPhoneAuthCredential(credential)
 
+            signInWithPhoneAuthCredential(credential)
 //            Handler().postDelayed({
 //                signInWithPhoneAuthCredential(credential)
 //            }, 1000)
@@ -116,7 +172,6 @@ class AuthRepo constructor(
             super.onCodeSent(verificationId, token)
             Log.d(TAG, "callback: onCodeSent: $verificationId")
             this@AuthRepo.verificationId.value = verificationId
-//            toast(context, "Verification code sent successfully")
         }
     }
 }

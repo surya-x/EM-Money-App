@@ -232,7 +232,6 @@
                     android:layout_height="wrap_content"
                     android:alpha="1"
                     android:onClick="@{()->viewModel.resendClicked()}"
-                    android:enabled="@{viewModel.resendEnabled}"
                     android:gravity="end|top"
                     android:text="@string/re_send"
                     android:textColor="@color/orange_theme" />
