@@ -48,17 +48,20 @@ class SplashScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.root.setOnClickListener {
-            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
-        }
-
+        /* Create an Intent that will start the Menu-Activity. */
         Handler(Looper.getMainLooper()).postDelayed({
-            /* Create an Intent that will start the Menu-Activity. */
             if(onView) {
                 findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
             }
-        }, 3000)
+        }, 2000)
 
+//        binding.root.setOnClickListener {
+//            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+//        }
+
+//        binding.imageView.setOnClickListener {
+//            updateUI()
+//        }
     }
 
     override fun onDestroyView() {

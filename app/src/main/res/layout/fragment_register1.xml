@@ -231,8 +231,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="1"
-                    android:onClick="@{()->viewModel.resendClicked()}"
                     android:gravity="end|top"
+                    android:onClick="@{()->viewModel.resendClicked()}"
                     android:text="@string/re_send"
                     android:textColor="@color/orange_theme" />
             </LinearLayout>

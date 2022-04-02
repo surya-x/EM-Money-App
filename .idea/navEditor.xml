@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="579" />
-                            <option name="y" value="143" />
+                            <option name="x" value="884" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -39,8 +39,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="283" />
-                            <option name="y" value="-18" />
+                            <option name="x" value="247" />
+                            <option name="y" value="-86" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -60,6 +60,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_loginUsingPhoneFragment_to_successLoginFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -70,8 +75,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="902" />
-                            <option name="y" value="143" />
+                            <option name="x" value="735" />
+                            <option name="y" value="219" />
                           </Point>
                         </option>
                         <option name="myPositions">

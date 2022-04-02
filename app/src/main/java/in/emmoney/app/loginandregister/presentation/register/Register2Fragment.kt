@@ -2,6 +2,8 @@ package `in`.emmoney.app.loginandregister.presentation.register
 
 import `in`.emmoney.app.R
 import `in`.emmoney.app.common.presentation.CustomProgressView
+import `in`.emmoney.app.common.utils.Utils.dismissIfShowing
+import `in`.emmoney.app.common.utils.Utils.toggle
 import `in`.emmoney.app.databinding.FragmentRegister2Binding
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 
 class Register2Fragment : Fragment() {
 
-    private val TAG = "register"
+    private val TAG = "auth"
 
     private lateinit var viewModel: Register1ViewModel
 
@@ -33,7 +35,7 @@ class Register2Fragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRegister2Binding.inflate(inflater, container, false)
 
-        viewModel = ViewModelProvider(this).get(Register1ViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(Register1ViewModel::class.java)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -92,11 +94,41 @@ class Register2Fragment : Fragment() {
                 findNavController().navigate(R.id.action_register2Fragment_to_successLoginFragment)
             }
         }
+
+        viewModel.firstNameError.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.firstName.error = it
+            }
+        }
+        viewModel.lastNameError.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.lastName.error = it
+            }
+        }
+        viewModel.emailError.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.email.error = it
+            }
+        }
+        viewModel.passwordError.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.password.error = it
+            }
+        }
+        viewModel.getProgress().observe(viewLifecycleOwner) {
+            progressView?.toggle(it)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        try {
+            viewModel.clearAll()
+            progressView?.dismissIfShowing()
+            _binding = null
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 }

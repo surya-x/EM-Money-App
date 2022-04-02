@@ -13,7 +13,7 @@
 
         <import type="android.view.View" />
     </data>
-    
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/splash1"
     android:layout_width="match_parent"

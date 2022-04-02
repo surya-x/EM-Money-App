@@ -49,7 +49,7 @@
     <string name="malformed_fname_error">Firstname can\'t be empty</string>
     <string name="malformed_lname_error">Lastname can\'t be empty</string>
     <string name="malformed_email_empty_error">Email can\'t be empty</string>
-    <string name="malformed_email_error">Invalid Email addres</string>
+    <string name="malformed_email_error">Invalid Email address</string>
     <string name="malformed_password_error">Length of the password should be atleast 6 letters</string>
 
 </resources>

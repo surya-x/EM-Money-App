@@ -6,11 +6,13 @@ import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
 import `in`.emmoney.app.loginandregister.domain.models.UserModel
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
@@ -18,7 +20,7 @@ import java.util.concurrent.TimeUnit
 class AuthRepo constructor(
     val context: Context
 ) {
-    private val TAG = "register"
+    private val TAG = "auth"
 
     private val auth = FirebaseAuth.getInstance()
 
@@ -35,6 +37,8 @@ class AuthRepo constructor(
     private val emailAuthTaskResult: MutableLiveData<Task<AuthResult>> = MutableLiveData()
 
     private val isUserRegistered: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val userLoggedIn: MutableLiveData<FirebaseUser> = MutableLiveData()
 
 
     fun sendOtp(activity: Activity, number: String) {
@@ -81,7 +85,10 @@ class AuthRepo constructor(
                     emailAuthTaskResult.value = task
                 } else {
                     Log.w(TAG, "linkWithCredential:failure", task.exception)
-                    toastLong(context, "Unable to Register, please try again after sometime")
+                    if (task.exception is FirebaseException)
+                        toastLong(context, "Invalid OTP, Please Try Again!")
+                    else
+                        toastLong(context, "Unable to Register, please try again after sometime")
                 }
             }
     }
@@ -144,6 +151,34 @@ class AuthRepo constructor(
         return isUserRegistered
     }
 
+    fun getUserLoggedIn(): LiveData<FirebaseUser> {
+        return userLoggedIn
+    }
+
+    fun signInWithEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d(TAG, "signInWithEmailAndPassword:successful -> email:$email")
+                userLoggedIn.value = it.result.user
+            } else {
+                Log.w(TAG, "signInWithCredential:failure", it.exception)
+                if (it.exception is FirebaseAuthInvalidCredentialsException)
+                    toastLong(context, "Incorrect Credentials, Please Try Again!")
+                else if(it.exception is FirebaseNetworkException)
+                    toastLong(context, "No Internet Connection, Please Try Again!")
+                failedState.value = LogInFailedState.SignIn
+            }
+        }
+//            .addOnFailureListener { e ->
+//            Log.e(TAG, "signInWithEmailAndPassword:failure ${e.message}")
+//            when (e) {
+//                is FirebaseAuthInvalidCredentialsException ->
+//                    toast(context, "Invalid Request")
+//                else -> toast(context, e.message.toString())
+//            }
+//        }
+    }
+
 
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 
@@ -152,10 +187,10 @@ class AuthRepo constructor(
             Log.d(TAG, "callback: onVerificationCompleted: $credential")
             this@AuthRepo.credential.value = credential
 
-            signInWithPhoneAuthCredential(credential)
-//            Handler().postDelayed({
-//                signInWithPhoneAuthCredential(credential)
-//            }, 1000)
+//            signInWithPhoneAuthCredential(credential)
+            Handler().postDelayed({
+                signInWithPhoneAuthCredential(credential)
+            }, 1000)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
@@ -170,7 +205,7 @@ class AuthRepo constructor(
 
         override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
             super.onCodeSent(verificationId, token)
-            Log.d(TAG, "callback: onCodeSent: $verificationId")
+            Log.d(TAG, "callback: onCodeSent -> verificationID:$verificationId")
             this@AuthRepo.verificationId.value = verificationId
         }
     }

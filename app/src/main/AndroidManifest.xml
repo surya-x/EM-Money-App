@@ -10,15 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EM_Money">
         <activity
-            android:name="in.emmoney.app.MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:name=".homeActivity.presentation.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

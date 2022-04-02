@@ -33,7 +33,7 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val authRepo: AuthRepo = AuthRepo(context)
 
-    val TAG = "register"
+    val TAG = "auth"
 
     var phoneNumber: String = ""
     var otpPhone: String = ""
@@ -92,7 +92,7 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
             }
             Utils.isNoInternet(context) -> {
                 Log.d(TAG, "No Internet Connection!")
-                toastLong(context,"No Internet Connection!")
+                toastLong(context, "No Internet Connection!")
                 false
             }
             else -> {
@@ -112,7 +112,7 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
             }
             Utils.isNoInternet(context) -> {
                 Log.d(TAG, "No Internet Connection!")
-                toastLong(context,"No Internet Connection!")
+                toastLong(context, "No Internet Connection!")
                 false
             }
             else -> {
@@ -176,12 +176,17 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
         authRepo.sendOtp(activity, phoneWithCountryCode)
     }
 
-    fun verifyOtp(){
+    fun verifyOtp() {
         val credential = PhoneAuthProvider.getCredential(this.verifyCode, this.otpPhone)
         this.setCredential(credential)
     }
 
-    fun linkUserWithEmail(){
+    private fun setCredential(credential: PhoneAuthCredential) {
+        setProgress(true)
+        authRepo.setCredential(credential)
+    }
+
+    fun linkUserWithEmail() {
         email = email.trim()
         authRepo.linkUserWithEmail(email, password)
     }
@@ -206,17 +211,6 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 
         authRepo.saveUserToDatabase(user, items)
     }
-
-    private fun setCredential(credential: PhoneAuthCredential) {
-        setProgress(true)
-        authRepo.setCredential(credential)
-    }
-
-//    fun checkOtp() {
-//        Log.d(TAG, "continue button clicked")
-////        _otpRequestSent.value = false
-//        _continueButtonEnabled.value = false
-//    }
 
 
     fun setProgress(show: Boolean) {
@@ -288,11 +282,11 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
                 progress.value = false
                 if (data.exists()) {
                     // User with credential already created in Firestore DB
-                    // TODO: may have to tweak according to firebase reaction on diff cases
+                    // TODO: move user to login page
                     Log.d(TAG, "data.exists():true -> user already in firestore")
-                    toastLong(context, "USER ALREADY EXISTS!! Try Logging in" )
-                }
-                else {
+                    toastLong(context, "USER ALREADY EXISTS!! Try Logging in")
+                } else {
+                    Log.d(TAG, "data.exists():false -> user new to firestore")
                     userProfileGot.value = user?.uid
                 }
             }.addOnFailureListener { e ->
