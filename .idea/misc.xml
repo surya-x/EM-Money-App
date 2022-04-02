@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/action_bar_dummy.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/background_bottom_nav.xml" value="0.245" />
+        <entry key="app/src/main/res/drawable/background_grid.xml" value="0.2785" />
         <entry key="app/src/main/res/drawable/button_border.xml" value="0.2641350210970464" />
         <entry key="app/src/main/res/drawable/buttonborder.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ellipse1.xml" value="0.321025641025641" />
@@ -17,6 +18,7 @@
         <entry key="app/src/main/res/drawable/horizontal_line.xml" value="0.34444444444444444" />
         <entry key="app/src/main/res/drawable/ic_app_logo_vector.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ic_dashboard.xml" value="0.2455" />
+        <entry key="app/src/main/res/drawable/ic_grid_1.xml" value="0.2785" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.2455" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ic_message_alt_fill.xml" value="0.2555" />
@@ -31,7 +33,7 @@
         <entry key="app/src/main/res/font/poppins.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins500.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins600.xml" value="0.32222222222222224" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.22948717948717948" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.23233695652173914" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2012820512820513" />
         <entry key="app/src/main/res/layout/fragment_login_using_email.xml" value="0.25427350427350426" />
         <entry key="app/src/main/res/layout/fragment_login_using_phone.xml" value="0.2510548523206751" />
