@@ -91,7 +91,7 @@ class Register2Fragment : Fragment() {
 
         viewModel.isUserRegistered().observe(viewLifecycleOwner) {
             if (it){
-                findNavController().navigate(R.id.action_register2Fragment_to_successLoginFragment)
+                findNavController().navigate(R.id.action_register2Fragment_to_homeActivity)
             }
         }
 

@@ -16,8 +16,8 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_splashScreen_to_successLoginFragment"
-            app:destination="@id/successLoginFragment"
+            android:id="@+id/action_splashScreen_to_homeActivity"
+            app:destination="@id/homeActivity"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -32,6 +32,9 @@
             app:destination="@id/onboarding2"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_onboarding1_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
     <fragment
         android:id="@+id/onboarding2"
@@ -69,8 +72,8 @@
             android:id="@+id/action_loginUsingPhoneFragment_to_register1Fragment"
             app:destination="@id/register1Fragment" />
         <action
-            android:id="@+id/action_loginUsingPhoneFragment_to_successLoginFragment"
-            app:destination="@id/successLoginFragment"
+            android:id="@+id/action_loginUsingPhoneFragment_to_homeActivity"
+            app:destination="@id/homeActivity"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -79,8 +82,8 @@
         android:name="in.emmoney.app.loginandregister.presentation.login.LoginPhoneOTPFragment"
         android:label="LoginUsingPhoneOTPFragment" >
         <action
-            android:id="@+id/action_loginUsingPhoneOTPFragment_to_successLoginFragment"
-            app:destination="@id/successLoginFragment"
+            android:id="@+id/action_loginUsingPhoneOTPFragment_to_homeActivity"
+            app:destination="@id/homeActivity"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -89,8 +92,8 @@
         android:name="in.emmoney.app.loginandregister.presentation.login.LoginEmailFragment"
         android:label="LoginUsingEmailFragment" >
         <action
-            android:id="@+id/action_loginUsingEmailFragment_to_successLoginFragment"
-            app:destination="@id/successLoginFragment"
+            android:id="@+id/action_loginUsingEmailFragment_to_homeActivity"
+            app:destination="@id/homeActivity"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
         <action
@@ -110,13 +113,13 @@
         android:name="in.emmoney.app.loginandregister.presentation.register.Register2Fragment"
         android:label="Register2Fragment" >
         <action
-            android:id="@+id/action_register2Fragment_to_successLoginFragment"
-            app:destination="@id/successLoginFragment"
+            android:id="@+id/action_register2Fragment_to_homeActivity"
+            app:destination="@id/homeActivity"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/successLoginFragment"
-        android:name="in.emmoney.app.loginandregister.presentation.SuccessLoginFragment"
-        android:label="SuccessLoginFragment" />
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="in.emmoney.app.homeActivity.presentation.HomeActivity"
+        android:label="HomeActivity" />
 </navigation>

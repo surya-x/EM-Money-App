@@ -98,7 +98,7 @@ class LoginPhoneOTPFragment : Fragment() {
                     Log.d(TAG, "getCredential")
                     Utils.toastLong(requireContext(), "OTP Verified Automatically")
                 }
-                findNavController().navigate(R.id.action_loginUsingPhoneOTPFragment_to_successLoginFragment)
+                findNavController().navigate(R.id.action_loginUsingPhoneOTPFragment_to_homeActivity)
             }
         }
     }

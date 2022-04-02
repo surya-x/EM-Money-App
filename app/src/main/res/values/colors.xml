@@ -14,6 +14,9 @@
     <color name="black_overlay">#66000000</color>
 
     <color name="orange_theme">#F6801D</color>
+    <color name="colorSurface">#F6801D</color>
     <color name="red">#C62828</color>
     <color name="green">#2E7D32</color>
+    <color name="transparent">#00000000</color>
+    <color name="nav_bar_item_unchecked">#33FFFFFF</color>
 </resources>

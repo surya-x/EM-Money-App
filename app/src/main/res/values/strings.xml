@@ -51,5 +51,8 @@
     <string name="malformed_email_empty_error">Email can\'t be empty</string>
     <string name="malformed_email_error">Invalid Email address</string>
     <string name="malformed_password_error">Length of the password should be atleast 6 letters</string>
+    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="profile">Profile</string>
 
 </resources>

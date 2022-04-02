@@ -118,7 +118,7 @@ class LoginPhoneFragment : Fragment() {
                     Log.d(TAG, "getCredential")
                     Utils.toastLong(requireContext(), "OTP Verified Automatically")
                 }
-                    findNavController().navigate(R.id.action_loginUsingPhoneFragment_to_successLoginFragment)
+                    findNavController().navigate(R.id.action_loginUsingPhoneFragment_to_homeActivity)
             }
         }
 //            if (!userId.isNullOrEmpty() && viewModel.getCredential().value?.smsCode.isNullOrEmpty()) {

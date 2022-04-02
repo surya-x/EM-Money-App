@@ -59,6 +59,7 @@ class SplashScreen : Fragment() {
 //            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
 //        }
 
+        // TODO: For debug mode only
 //        binding.imageView.setOnClickListener {
 //            updateUI()
 //        }
@@ -71,6 +72,6 @@ class SplashScreen : Fragment() {
     }
 
     private fun updateUI(){
-        findNavController().navigate(R.id.action_splashScreen_to_successLoginFragment)
+        findNavController().navigate(R.id.action_splashScreen_to_homeActivity)
     }
 }

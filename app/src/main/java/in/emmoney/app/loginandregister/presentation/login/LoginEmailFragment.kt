@@ -77,7 +77,7 @@ class LoginEmailFragment : Fragment() {
     private fun setupObservers() {
         viewModel.getUserLoggedIn().observe(viewLifecycleOwner) { firebaseUser ->
             if(firebaseUser != null){
-                findNavController().navigate(R.id.action_loginUsingEmailFragment_to_successLoginFragment)
+                findNavController().navigate(R.id.action_loginUsingEmailFragment_to_homeActivity)
             }
         }
         viewModel.getFailed().observe(viewLifecycleOwner) {
