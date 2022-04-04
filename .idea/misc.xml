@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/ellipse_small_filled.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable-v24/ellipsesmall_filled.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2555" />
+        <entry key="app/src/main/res/drawable-v24/ic_profile_filled.xml" value="0.2695" />
         <entry key="app/src/main/res/drawable/action_bar_dummy.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/background_bottom_nav.xml" value="0.245" />
         <entry key="app/src/main/res/drawable/background_grid.xml" value="0.2785" />
@@ -17,15 +18,19 @@
         <entry key="app/src/main/res/drawable/ellipsesmall.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/horizontal_line.xml" value="0.34444444444444444" />
         <entry key="app/src/main/res/drawable/ic_app_logo_vector.xml" value="0.2555" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.2695" />
         <entry key="app/src/main/res/drawable/ic_dashboard.xml" value="0.2455" />
         <entry key="app/src/main/res/drawable/ic_grid_1.xml" value="0.2785" />
+        <entry key="app/src/main/res/drawable/ic_hdfc_bank_logo.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.2455" />
+        <entry key="app/src/main/res/drawable/ic_icici_bank_logo.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ic_message_alt_fill.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ic_onboarding1.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ic_onboarding2.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ic_onboarding3.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.2455" />
+        <entry key="app/src/main/res/drawable/ic_transactions.xml" value="0.2695" />
         <entry key="app/src/main/res/drawable/onboarding1.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/or_block.xml" value="0.34444444444444444" />
         <entry key="app/src/main/res/drawable/phone_block.xml" value="0.321025641025641" />
@@ -33,14 +38,16 @@
         <entry key="app/src/main/res/font/poppins.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins500.xml" value="0.33487179487179486" />
         <entry key="app/src/main/res/font/poppins600.xml" value="0.32222222222222224" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.23233695652173914" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2012820512820513" />
+        <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/layout/fragment_login_using_email.xml" value="0.25427350427350426" />
         <entry key="app/src/main/res/layout/fragment_login_using_phone.xml" value="0.2510548523206751" />
         <entry key="app/src/main/res/layout/fragment_login_using_phone_o_t_p.xml" value="0.2290909090909091" />
         <entry key="app/src/main/res/layout/fragment_onboarding1.xml" value="0.23981481481481481" />
         <entry key="app/src/main/res/layout/fragment_onboarding2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_onboarding3.xml" value="0.29583333333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile_page.xml" value="0.2449074074074074" />
         <entry key="app/src/main/res/layout/fragment_register1.xml" value="0.2721518987341772" />
         <entry key="app/src/main/res/layout/fragment_register2.xml" value="0.24273504273504273" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.3098958333333333" />
