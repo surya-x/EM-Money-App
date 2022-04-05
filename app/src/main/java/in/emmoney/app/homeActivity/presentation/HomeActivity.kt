@@ -4,6 +4,7 @@ import `in`.emmoney.app.R
 import `in`.emmoney.app.databinding.ActivityHomeBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -34,11 +35,32 @@ class HomeActivity : AppCompatActivity() {
             setOf(
                 R.id.homePageFragment,
                 R.id.profilePageFragment,
-                R.id.dashboardFragment
+                R.id.dashboardFragment,
+                R.id.myAccountFragment
             )
         )
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
-//        binding.bottomNavigation.setupWithNavController(findNavController(R.id.nav_host_home_fragment))
+        navController.addOnDestinationChangedListener{_, destination, _ ->
+//            if(destination.id == R.id.myAccountFragment) {
+//                binding.bottomNavigation.visibility = View.GONE
+//            }
+//            else if(destination.id == R.id.homePageFragment) {
+//                binding.bottomNavigation.visibility = View.VISIBLE
+//            }
+//            else if(destination.id == R.id.profilePageFragment) {
+//                binding.bottomNavigation.visibility = View.VISIBLE
+//            }
+//            else if(destination.id == R.id.dashboardFragment) {
+//                binding.bottomNavigation.visibility = View.VISIBLE
+//            }
+
+            binding.bottomNavigation.visibility = when (destination.id){
+                R.id.myAccountFragment -> View.GONE
+                else -> View.VISIBLE
+            }
+        }
     }
+
+
 }

@@ -162,7 +162,7 @@
             android:layout_marginTop="@dimen/size12"
             android:layout_marginEnd="@dimen/large"
             android:background="@drawable/phone_block"
-            android:hint="Pan Card ID"
+            android:hint="Pan Card Number (optional)"
             android:inputType="text"
             android:paddingHorizontal="@dimen/medium"
             android:textColorHint="#4D000000"

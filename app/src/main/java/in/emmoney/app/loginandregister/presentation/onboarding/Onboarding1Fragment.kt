@@ -30,9 +30,9 @@ class Onboarding1Fragment : Fragment() {
         }
 
         // TODO: For debug mode only
-        binding.imageView2.setOnClickListener {
-            findNavController().navigate(R.id.action_onboarding1_to_homeActivity)
-        }
+//        binding.imageView2.setOnClickListener {
+//            findNavController().navigate(R.id.action_onboarding1_to_homeActivity)
+//        }
     }
 
     override fun onDestroyView() {

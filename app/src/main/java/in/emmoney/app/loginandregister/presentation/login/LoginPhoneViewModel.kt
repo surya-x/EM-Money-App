@@ -24,6 +24,8 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
 
     private val authRepo: AuthRepo = AuthRepo(context)
 
+    private lateinit var activity: Activity
+
     val TAG = "auth"
 
     var phoneNumber: String = ""
@@ -93,7 +95,7 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
         phoneWithCountryCode = "+91$phoneNumber"
 
         authRepo.clearOldAuth()
-//        this.activity = activity
+        this.activity = activity
         authRepo.sendOtp(activity, phoneWithCountryCode)
     }
 
@@ -179,6 +181,14 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
                 progress.value = false
                 Toast.makeText(context, e.message.toString(), Toast.LENGTH_SHORT).show()
             }
+    }
+
+    fun resendClicked() {
+//        if (canResend) {
+//            setVProgress(true)
+//            sendOtp(activity)
+//        }
+        Toast.makeText(context, "Sorry!! unable to resend OTP, try again after sometime", Toast.LENGTH_LONG).show()
     }
 
     fun clearAll() {

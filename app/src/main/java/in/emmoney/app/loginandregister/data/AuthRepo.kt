@@ -46,7 +46,7 @@ class AuthRepo constructor(
 
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(number)
-            .setTimeout(60L, TimeUnit.SECONDS)
+            .setTimeout(120L, TimeUnit.SECONDS)
             .setActivity(activity)
             .setCallbacks(callbacks)
             .build()
@@ -129,6 +129,9 @@ class AuthRepo constructor(
     fun clearOldAuth(){
         credential.value=null
         taskResult.value=null
+
+        // TODO: Experimental
+        verificationId.value=null
     }
 
     fun getCredential(): LiveData<PhoneAuthCredential> {

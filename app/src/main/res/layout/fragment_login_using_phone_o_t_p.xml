@@ -134,6 +134,7 @@
             android:alpha="1"
             android:gravity="center_horizontal|top"
             android:text="@string/re_send"
+            android:onClick="@{() -> viewModel.resendClicked()}"
             android:textColor="@color/orange_theme" />
 
     </LinearLayout>

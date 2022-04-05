@@ -14,10 +14,18 @@
         android:id="@+id/profilePageFragment"
         android:name="in.emmoney.app.ProfilePageFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile_page" />
+        tools:layout="@layout/fragment_profile_page" >
+        <action
+            android:id="@+id/action_profilePageFragment_to_myAccountFragment"
+            app:destination="@id/myAccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="in.emmoney.app.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="in.emmoney.app.MyAccountFragment"
+        android:label="My Account" />
 </navigation>

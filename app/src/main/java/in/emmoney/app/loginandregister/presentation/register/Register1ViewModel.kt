@@ -8,6 +8,7 @@ import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
+import kotlin.collections.HashMap
 
 
 //class Register1ViewModel
@@ -77,6 +80,10 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     private val progress = MutableLiveData(false)
 
     var verifyCode: String = ""
+
+//    var canResend: Boolean = false
+//
+//    private lateinit var timer: CountDownTimer
 
 
     fun isValidPhone(): Boolean {
@@ -220,6 +227,50 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
     fun getProgress(): LiveData<Boolean> {
         return progress
     }
+
+//    fun startTimer() {
+//        try {
+//            canResend = false
+//            timer = object : CountDownTimer(60000, 1000) {
+//                override fun onTick(millisUntilFinished: Long) {
+//                    setTimerTxt(millisUntilFinished / 1000)
+//                }
+//
+//                override fun onFinish() {
+//                    canResend = true
+//                    resendTxt.value = "Resend"
+//                }
+//            }
+//            timer.start()
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//    }
+//
+//    fun resetTimer() {
+//        canResend = false
+//        resendTxt.value = ""
+//        if (this::timer.isInitialized)
+//            timer.cancel()
+//    }
+//
+//    private fun setTimerTxt(seconds: Long) {
+//        try {
+//            val s = seconds % 60
+//            val m = seconds / 60 % 60
+//            if (s == 0L && m == 0L) return
+//            val resend: String =
+//                "Resend in " + String.format(
+//                    Locale.getDefault(),
+//                    "%02d:%02d",
+//                    m,
+//                    s
+//                )
+//            resendTxt.value = resend
+//        } catch (e: java.lang.Exception) {
+//            e.printStackTrace()
+//        }
+//    }
 
     fun resendClicked() {
 //        _resendEnabled.value = false

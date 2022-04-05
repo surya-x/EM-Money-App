@@ -5,6 +5,7 @@ import `in`.emmoney.app.databinding.FragmentSplashScreenBinding
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 
 class SplashScreen : Fragment() {
 
+    private val TAG = "auth"
     private lateinit var auth: FirebaseAuth
     private var _binding: FragmentSplashScreenBinding? = null
     private val binding get() = _binding!!
@@ -39,9 +41,19 @@ class SplashScreen : Fragment() {
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
+
+//        Log.d(TAG, "checking if user already signed in")
 //        val currentUser = auth.currentUser
 //        if(currentUser != null){
-//            updateUI();
+//            Log.d(TAG, "currentUser != null, user already logged in: ${auth.currentUser?.uid.toString()}")
+//            updateUI()
+//        }
+//        else{
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                if(onView) {
+//                    findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+//                }
+//            }, 2000)
 //        }
     }
 
@@ -55,8 +67,16 @@ class SplashScreen : Fragment() {
             }
         }, 2000)
 
-//        binding.root.setOnClickListener {
-//            findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+//        val currentUser = auth.currentUser
+//        if(currentUser != null){
+//            updateUI()
+//        }
+//        else{
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                if(onView) {
+//                    findNavController().navigate(R.id.action_splashScreen_to_onboarding1)
+//                }
+//            }, 2000)
 //        }
 
         // TODO: For debug mode only
@@ -72,6 +92,7 @@ class SplashScreen : Fragment() {
     }
 
     private fun updateUI(){
-        findNavController().navigate(R.id.action_splashScreen_to_homeActivity)
+        if(onView)
+            findNavController().navigate(R.id.action_splashScreen_to_homeActivity)
     }
 }
