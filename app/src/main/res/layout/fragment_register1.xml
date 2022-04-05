@@ -225,16 +225,30 @@
                     android:paddingHorizontal="4dp"
                     android:text="@string/didnt_receive_the_code" />
 
+<!--                <TextView-->
+<!--                    android:id="@+id/resend"-->
+<!--                    style="@style/login.description"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:alpha="1"-->
+<!--                    android:visibility="gone"-->
+<!--                    android:gravity="end|top"-->
+<!--                    android:onClick="@{()->viewModel.resendClicked()}"-->
+<!--                    android:text="@string/re_send"-->
+<!--                    android:textColor="@color/orange_theme" />-->
+
                 <TextView
-                    android:id="@+id/resend"
+                    android:id="@+id/timer_text"
                     style="@style/login.description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:alpha="1"
                     android:gravity="end|top"
-                    android:onClick="@{()->viewModel.resendClicked()}"
-                    android:text="@string/re_send"
-                    android:textColor="@color/orange_theme" />
+                    android:alpha="1"
+                    android:onClick="@{() -> viewModel.resendClicked()}"
+                    android:paddingStart="4dp"
+                    android:text="@{viewModel.resendTxt}"
+                    android:textColor="@color/orange_theme"
+                    tools:text="01:20"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

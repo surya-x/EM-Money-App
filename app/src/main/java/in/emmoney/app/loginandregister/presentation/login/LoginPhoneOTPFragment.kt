@@ -47,6 +47,8 @@ class LoginPhoneOTPFragment : Fragment() {
 
         progressView = CustomProgressView(requireContext())
 
+        if (viewModel.resendTxt.value.isNullOrEmpty())
+            viewModel.startTimer()
         setupListeners()
         setupObservers()
     }
@@ -57,7 +59,10 @@ class LoginPhoneOTPFragment : Fragment() {
         }
         binding.submit.setOnClickListener {
             if (viewModel.isValidOtp()) {
+                //                viewModel.resetTimer()
                 viewModel.setProgress(true)
+//                if (viewModel.resendTxt.value.isNullOrEmpty())
+//                    viewModel.startTimer()
                 viewModel.verifyOtp()
             }
         }
@@ -86,6 +91,14 @@ class LoginPhoneOTPFragment : Fragment() {
             if (taskId != null) {
                 Log.d(TAG, "getTaskResult observer finds changes")
                 viewModel.fetchUser(taskId)
+            }
+        }
+
+        viewModel.getVerificationId().observe(viewLifecycleOwner) { vCode ->
+            vCode?.let {
+                viewModel.setProgress(false)
+                viewModel.setVCodeNull()
+//                viewModel.startTimer()
             }
         }
 

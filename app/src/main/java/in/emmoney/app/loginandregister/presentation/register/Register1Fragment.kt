@@ -122,6 +122,10 @@ class Register1Fragment : Fragment() {
                 binding.otpStatus.visibility = View.VISIBLE
                 binding.otpPhone.visibility = View.VISIBLE
                 binding.resendText.visibility = View.VISIBLE
+
+//                viewModel.resetTimer()
+                if (viewModel.resendTxt.value.isNullOrEmpty())
+                    viewModel.startTimer()
             }
         }
 

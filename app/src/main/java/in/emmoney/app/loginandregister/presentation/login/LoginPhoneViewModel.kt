@@ -7,6 +7,7 @@ import `in`.emmoney.app.loginandregister.domain.models.LogInFailedState
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -17,6 +18,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 class LoginPhoneViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -45,7 +47,13 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
 
     val userProfileGot = MutableLiveData("")
 
+    val resendTxt = MutableLiveData<String>()
+
     var verifyCode: String = ""
+
+    var canResend: Boolean = false
+
+    private lateinit var timer: CountDownTimer
 
 
     fun isValidPhone(): Boolean {
@@ -150,6 +158,51 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
         authRepo.setVCodeNull()
     }
 
+    fun startTimer() {
+        try {
+            canResend = false
+            // Timer for 2 minutes
+            timer = object : CountDownTimer(120000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    setTimerTxt(millisUntilFinished / 1000)
+                }
+
+                override fun onFinish() {
+                    canResend = true
+                    resendTxt.value = "Resend"
+                }
+            }
+            timer.start()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun resetTimer() {
+        canResend = false
+        resendTxt.value = ""
+        if (this::timer.isInitialized)
+            timer.cancel()
+    }
+
+    private fun setTimerTxt(seconds: Long) {
+        try {
+            val s = seconds % 60
+            val m = seconds / 60 % 60
+            if (s == 0L && m == 0L) return
+            val resend: String =
+                "Resend in " + String.format(
+                    Locale.getDefault(),
+                    "%02d:%02d",
+                    m,
+                    s
+                )
+            resendTxt.value = resend
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun fetchUser(taskId: Task<AuthResult>) {
         // TODO: temp log + update section
         Log.d(TAG, "credentials verified, fetch user called")
@@ -184,11 +237,13 @@ class LoginPhoneViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun resendClicked() {
-//        if (canResend) {
-//            setVProgress(true)
-//            sendOtp(activity)
-//        }
-        Toast.makeText(context, "Sorry!! unable to resend OTP, try again after sometime", Toast.LENGTH_LONG).show()
+        if (canResend) {
+            // setVProgress(true)
+            resetTimer()
+            setProgress(true)
+            sendOtp(activity)
+        }
+//        Toast.makeText(context, "Sorry!! unable to resend OTP, try again after sometime", Toast.LENGTH_LONG).show()
     }
 
     fun clearAll() {

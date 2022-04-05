@@ -105,6 +105,10 @@ class LoginPhoneFragment : Fragment() {
                 viewModel.setProgress(false)
                 viewModel.setVCodeNull()
 
+                viewModel.resetTimer()
+//                if (viewModel.resendTxt.value.isNullOrEmpty())
+//                    viewModel.startTimer()
+
                 findNavController().navigate(R.id.action_loginUsingPhoneFragment_to_loginUsingPhoneOTPFragment)
             }
         }

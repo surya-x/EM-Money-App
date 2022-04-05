@@ -79,11 +79,13 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val progress = MutableLiveData(false)
 
+    val resendTxt = MutableLiveData<String>()
+
     var verifyCode: String = ""
 
-//    var canResend: Boolean = false
-//
-//    private lateinit var timer: CountDownTimer
+    var canResend: Boolean = false
+
+    private lateinit var timer: CountDownTimer
 
 
     fun isValidPhone(): Boolean {
@@ -228,57 +230,59 @@ class Register1ViewModel(application: Application) : AndroidViewModel(applicatio
         return progress
     }
 
-//    fun startTimer() {
-//        try {
-//            canResend = false
-//            timer = object : CountDownTimer(60000, 1000) {
-//                override fun onTick(millisUntilFinished: Long) {
-//                    setTimerTxt(millisUntilFinished / 1000)
-//                }
-//
-//                override fun onFinish() {
-//                    canResend = true
-//                    resendTxt.value = "Resend"
-//                }
-//            }
-//            timer.start()
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
-//
-//    fun resetTimer() {
-//        canResend = false
-//        resendTxt.value = ""
-//        if (this::timer.isInitialized)
-//            timer.cancel()
-//    }
-//
-//    private fun setTimerTxt(seconds: Long) {
-//        try {
-//            val s = seconds % 60
-//            val m = seconds / 60 % 60
-//            if (s == 0L && m == 0L) return
-//            val resend: String =
-//                "Resend in " + String.format(
-//                    Locale.getDefault(),
-//                    "%02d:%02d",
-//                    m,
-//                    s
-//                )
-//            resendTxt.value = resend
-//        } catch (e: java.lang.Exception) {
-//            e.printStackTrace()
-//        }
-//    }
+    fun startTimer() {
+        try {
+            canResend = false
+            // Timer for 2 minutes
+            timer = object : CountDownTimer(120000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    setTimerTxt(millisUntilFinished / 1000)
+                }
+
+                override fun onFinish() {
+                    canResend = true
+                    resendTxt.value = "Resend"
+                }
+            }
+            timer.start()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun resetTimer() {
+        canResend = false
+        resendTxt.value = ""
+        if (this::timer.isInitialized)
+            timer.cancel()
+    }
+
+    private fun setTimerTxt(seconds: Long) {
+        try {
+            val s = seconds % 60
+            val m = seconds / 60 % 60
+            if (s == 0L && m == 0L) return
+            val resend: String =
+                "Resend in " + String.format(
+                    Locale.getDefault(),
+                    "%02d:%02d",
+                    m,
+                    s
+                )
+            resendTxt.value = resend
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
 
     fun resendClicked() {
 //        _resendEnabled.value = false
-//        if (canResend) {
-//            // setVProgress(true)
-//            setProgress(true)
-//            sendOtp(activity)
-//        }
+        if (canResend) {
+            // setVProgress(true)
+            resetTimer()
+            setProgress(true)
+            sendOtp(activity)
+        }
     }
 
 //    fun setVProgress(show: Boolean) {
