@@ -62,5 +62,6 @@
     <string name="grid_text_5">Sector Bets</string>
     <string name="grid_text_6">Top Funds</string>
     <string name="kyc_card">Complete your e-KYC by filling complete details to start trading on EM Money</string>
+    <string name="ekyc_description">Fill the required details to complete E-Kyc.</string>
 
 </resources>

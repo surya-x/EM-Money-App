@@ -2,20 +2,30 @@ package `in`.emmoney.app.homeActivity.presentation
 
 import `in`.emmoney.app.R
 import `in`.emmoney.app.databinding.ActivityHomeBinding
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
+
 
 class HomeActivity : AppCompatActivity() {
 
+    private val TAG = "HomeActivity"
+
     private lateinit var binding: ActivityHomeBinding
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,36 +41,59 @@ class HomeActivity : AppCompatActivity() {
 
 //        setSupportActionBar(binding.topAppBar)
 
+//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homePageFragment,
                 R.id.profilePageFragment,
                 R.id.dashboardFragment,
-                R.id.myAccountFragment
+                R.id.myAccountFragment,
+                R.id.completeKycFragment
             )
         )
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener{_, destination, _ ->
-//            if(destination.id == R.id.myAccountFragment) {
-//                binding.bottomNavigation.visibility = View.GONE
-//            }
-//            else if(destination.id == R.id.homePageFragment) {
-//                binding.bottomNavigation.visibility = View.VISIBLE
-//            }
-//            else if(destination.id == R.id.profilePageFragment) {
-//                binding.bottomNavigation.visibility = View.VISIBLE
-//            }
-//            else if(destination.id == R.id.dashboardFragment) {
-//                binding.bottomNavigation.visibility = View.VISIBLE
-//            }
-
             binding.bottomNavigation.visibility = when (destination.id){
                 R.id.myAccountFragment -> View.GONE
+                R.id.completeKycFragment -> View.GONE
                 else -> View.VISIBLE
             }
         }
+
+        // Obtain the FirebaseAnalytics instance.
+//        firebaseAnalytics = Firebase.analytics
+//        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+//            param(FirebaseAnalytics.Param.ITEM_ID, 1234)
+//            param(FirebaseAnalytics.Param.ITEM_NAME, "SURYA")
+//        }
+//        testCrashlytics()
     }
 
+    private fun testCrashlytics() {
+        // Creates a button that mimics a crash when pressed
+        val crashButton = Button(this)
+        crashButton.text = "Test Crash"
+        crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
+
+        addContentView(crashButton, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT))
+    }
+
+
+
+//    override fun onBackPressed() {
+//        val manager: FragmentManager = supportFragmentManager
+//        if (manager.backStackEntryCount > 0) {
+//            manager.popBackStack()
+//        } else {
+//            // if there is only one entry in the backstack, show the home screen
+//            moveTaskToBack(true)
+//        }
+//    }
 
 }

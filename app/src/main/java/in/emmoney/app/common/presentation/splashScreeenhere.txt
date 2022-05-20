@@ -1,4 +1,0 @@
-APP ENTRY POINT [ACTIVITY]
-
-- IF USER is signed in (non-null) GO TO HOME PAGE.
-- IF USER is NOT signed in ------ GO TO LOGIN PAGE.

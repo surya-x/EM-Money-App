@@ -7,12 +7,16 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="in.emmoney.app.HomePageFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.HomePageFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home_page"/>
+        tools:layout="@layout/fragment_home_page">
+        <action
+            android:id="@+id/action_homePageFragment_to_completeKycFragment"
+            app:destination="@id/completeKycFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profilePageFragment"
-        android:name="in.emmoney.app.ProfilePageFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.ProfilePageFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile_page" >
         <action
@@ -21,11 +25,15 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="in.emmoney.app.DashboardFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.DashboardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/myAccountFragment"
-        android:name="in.emmoney.app.MyAccountFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.MyAccountFragment"
         android:label="My Account" />
+    <fragment
+        android:id="@+id/completeKycFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.CompleteKycFragment"
+        android:label="Submit eKYC Details" />
 </navigation>

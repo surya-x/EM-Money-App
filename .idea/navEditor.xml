@@ -249,6 +249,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="completeKycFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-54" />
+                            <option name="y" value="397" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="dashboardFragment">
                     <value>
                       <LayoutPositions>
@@ -268,18 +280,6 @@
                           <Point>
                             <option name="x" value="-52" />
                             <option name="y" value="13" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="loginPhoneFragment">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="491" />
-                            <option name="y" value="350" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -308,11 +308,6 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_profilePageFragment_to_loginPhoneFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_profilePageFragment_to_myAccountFragment">
                               <value>
                                 <LayoutPositions />

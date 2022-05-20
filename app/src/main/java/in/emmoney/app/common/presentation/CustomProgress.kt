@@ -47,12 +47,14 @@ class CustomProgress : ProgressBar {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             this.indeterminateDrawable.colorFilter = BlendModeColorFilter(
                 getColor(
-                    context, R.color.teal_200
+                    context, R.color.orange_theme
                 ), BlendMode.SRC_ATOP
             )
         } else {
-            setColorFilter(this.indeterminateDrawable,
-                getColor(context, R.color.teal_200))
+            setColorFilter(
+                this.indeterminateDrawable,
+                getColor(context, R.color.orange_theme)
+            )
         }
     }
 

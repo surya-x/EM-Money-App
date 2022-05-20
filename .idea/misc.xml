@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/ellipse1.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/ellipse_large.xml" value="0.2555" />
         <entry key="app/src/main/res/drawable/ellipse_small.xml" value="0.2555" />
+        <entry key="app/src/main/res/drawable/ellipse_small_filled.xml" value="0.26" />
         <entry key="app/src/main/res/drawable/ellipsesmall.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/horizontal_line.xml" value="0.34444444444444444" />
         <entry key="app/src/main/res/drawable/ic_app_logo_vector.xml" value="0.2555" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/font/poppins600.xml" value="0.32222222222222224" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2012820512820513" />
+        <entry key="app/src/main/res/layout/fragment_complete_kyc.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.21712962962962962" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/layout/fragment_login_using_email.xml" value="0.25427350427350426" />
