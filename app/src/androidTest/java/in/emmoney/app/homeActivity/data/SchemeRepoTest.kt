@@ -1,9 +1,5 @@
 package `in`.emmoney.app.homeActivity.data
 
-import `in`.emmoney.app.homeActivity.domain.AllSchemesEntity
-import org.junit.Test
-import androidx.test.core.app.ApplicationProvider
-
 //class SchemeRepoTest {
 //
 //    @Test

@@ -1,7 +1,7 @@
 package `in`.emmoney.app.homeActivity.data
 
 import `in`.emmoney.app.homeActivity.domain.AllSchemesDao
-import `in`.emmoney.app.homeActivity.domain.AllSchemesEntity
+import `in`.emmoney.app.homeActivity.domain.models.AllSchemesEntity
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
