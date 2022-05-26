@@ -1,4 +1,4 @@
-package `in`.emmoney.app.homeActivity.presentation.HomePage
+package `in`.emmoney.app.homeActivity.presentation.homePage
 
 import `in`.emmoney.app.homeActivity.data.SchemeRepo
 import `in`.emmoney.app.homeActivity.data.SchemesRoomDatabase

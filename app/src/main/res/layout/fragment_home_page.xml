@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="in.emmoney.app.homeActivity.presentation.HomePage.HomePageViewModel" />
+            type="in.emmoney.app.homeActivity.presentation.homePage.HomePageViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".homeActivity.presentation.HomePage.HomePageFragment">
+        tools:context=".homeActivity.presentation.homePage.HomePageFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -542,6 +542,7 @@
         </com.google.android.material.card.MaterialCardView>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintStart_toStartOf="parent"
