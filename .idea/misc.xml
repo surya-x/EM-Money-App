@@ -46,7 +46,7 @@
         <entry key="app/src/main/res/layout/fragment_complete_kyc.xml" value="0.2625" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.21712962962962962" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.14583333333333334" />
-        <entry key="app/src/main/res/layout/fragment_login_using_email.xml" value="0.25427350427350426" />
+        <entry key="app/src/main/res/layout/fragment_login_using_email.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login_using_phone.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login_using_phone_o_t_p.xml" value="0.2290909090909091" />
         <entry key="app/src/main/res/layout/fragment_my_account.xml" value="0.22037037037037038" />

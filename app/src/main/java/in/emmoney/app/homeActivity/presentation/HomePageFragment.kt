@@ -3,11 +3,14 @@ package `in`.emmoney.app.homeActivity.presentation
 import `in`.emmoney.app.R
 import `in`.emmoney.app.databinding.FragmentHomePageBinding
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 class HomePageFragment : Fragment() {
@@ -17,6 +20,8 @@ class HomePageFragment : Fragment() {
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: HomePageViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,8 +30,11 @@ class HomePageFragment : Fragment() {
 
         _binding = FragmentHomePageBinding.inflate(inflater, container, false)
 
-//        binding.viewModel = viewModel
-//        binding.lifecycleOwner = this
+        viewModel = ViewModelProvider(requireActivity()).get(HomePageViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -35,7 +43,9 @@ class HomePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        testCrashlytics()
+        viewModel.fetchAllSchemes()
         setupListeners()
+        setupObservers()
 
     }
 
@@ -46,6 +56,16 @@ class HomePageFragment : Fragment() {
 
     }
 
+    private fun setupObservers() {
+        binding.viewModel?.allSchemes?.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                Toast.makeText(context, "schemes list found", Toast.LENGTH_LONG).show()
+                Log.d(TAG, "$TAG: schemes list found")
+            } else {
+                Log.d(TAG, "$TAG: schemes list is empty")
+            }
+        }
+    }
 
 
 //    override fun onBackPressed() {
