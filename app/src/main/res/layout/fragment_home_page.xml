@@ -13,16 +13,20 @@
         <import type="android.view.View" />
     </data>
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".homeActivity.presentation.homePage.HomePageFragment">
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -447,110 +451,22 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/item"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kyc_card_completed">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kyc_card_completed"
+            tools:listitem="@layout/item_scheme"
+            />
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--            android:nestedScrollingEnabled="false"-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/ic_icici_bank_logo" />
-
-                <TextView
-                    android:id="@+id/fund_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:singleLine="true"
-                    android:text="ICICI Prudential Technology Direct "
-                    android:textAppearance="@style/home.grid"
-                    app:layout_constraintBottom_toTopOf="@+id/fund_category"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/imageView"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/fund_category"
-                    style="@style/home.description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:alpha="0.4"
-                    android:text="Equity sectoral"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/fund_title"
-                    app:layout_constraintTop_toBottomOf="@id/fund_title" />
-
-                <TextView
-                    android:id="@+id/fund_category2"
-                    style="@style/home.description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:alpha="0.4"
-                    android:text="3Y Return:"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@id/fund_category"
-                    app:layout_constraintEnd_toStartOf="@id/fund_category3"
-                    app:layout_constraintTop_toTopOf="@id/fund_category" />
-
-                <TextView
-                    android:id="@+id/fund_category3"
-                    style="@style/home.description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:alpha="0.4"
-                    android:text="20.2%"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@id/fund_category"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/fund_category" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item"
-                tools:listitem="@layout/item_scheme"
-                />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
 </ScrollView>
+<!--    </LinearLayout>-->
 </layout>

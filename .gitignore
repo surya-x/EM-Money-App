@@ -10,6 +10,9 @@
 # Java class files
 *.class
 
+# ds store
+*.DS_Store
+
 # Generated files
 bin/
 gen/
@@ -38,12 +41,13 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
 .idea/dictionaries
-.idea/libraries
+/.idea/libraries
 # Android Studio 3 in .gitignore file.
 .idea/caches
 .idea/modules.xml

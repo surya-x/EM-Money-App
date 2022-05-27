@@ -36,6 +36,7 @@ class SchemesAdapter(val context: Context, val listener: ISchemesAdapter) :
 
     override fun getItemCount(): Int {
         return allSchemes.size
+//        return 100
     }
 
     fun updateList(newList: List<AllSchemesEntity>){

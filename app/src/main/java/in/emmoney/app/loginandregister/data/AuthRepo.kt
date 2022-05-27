@@ -162,7 +162,7 @@ class AuthRepo constructor(
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d(TAG, "signInWithEmailAndPassword:successful -> email:$email")
-                userLoggedIn.value = it.result.user
+                userLoggedIn.value = it.result?.user
             } else {
                 Log.w(TAG, "signInWithCredential:failure", it.exception)
                 if (it.exception is FirebaseAuthInvalidCredentialsException)

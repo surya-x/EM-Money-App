@@ -13,9 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 
 
@@ -25,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
+//    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +46,18 @@ class HomeActivity : AppCompatActivity() {
                 R.id.profilePageFragment,
                 R.id.dashboardFragment,
                 R.id.myAccountFragment,
-                R.id.completeKycFragment
+                R.id.completeKycFragment,
+                R.id.schemeFragment
             )
         )
+
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener{_, destination, _ ->
             binding.bottomNavigation.visibility = when (destination.id){
                 R.id.myAccountFragment -> View.GONE
                 R.id.completeKycFragment -> View.GONE
+                R.id.schemeFragment -> View.GONE
                 else -> View.VISIBLE
             }
         }
@@ -71,18 +71,18 @@ class HomeActivity : AppCompatActivity() {
 //        testCrashlytics()
     }
 
-    private fun testCrashlytics() {
-        // Creates a button that mimics a crash when pressed
-        val crashButton = Button(this)
-        crashButton.text = "Test Crash"
-        crashButton.setOnClickListener {
-            throw RuntimeException("Test Crash") // Force a crash
-        }
-
-        addContentView(crashButton, ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT))
-    }
+//    private fun testCrashlytics() {
+//        // Creates a button that mimics a crash when pressed
+//        val crashButton = Button(this)
+//        crashButton.text = "Test Crash"
+//        crashButton.setOnClickListener {
+//            throw RuntimeException("Test Crash") // Force a crash
+//        }
+//
+//        addContentView(crashButton, ViewGroup.LayoutParams(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.WRAP_CONTENT))
+//    }
 
 
 

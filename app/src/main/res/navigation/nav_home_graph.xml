@@ -13,7 +13,11 @@
         <action
             android:id="@+id/action_homePageFragment_to_completeKycFragment"
             app:destination="@id/completeKycFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_schemeFragment"
+            app:destination="@id/schemeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/profilePageFragment"
         android:name="in.emmoney.app.homeActivity.presentation.ProfilePageFragment"
@@ -36,4 +40,8 @@
         android:id="@+id/completeKycFragment"
         android:name="in.emmoney.app.homeActivity.presentation.CompleteKycFragment"
         android:label="Submit eKYC Details" />
+    <fragment
+        android:id="@+id/schemeFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.homePage.SchemeFragment"
+        android:label="Funds" />
 </navigation>

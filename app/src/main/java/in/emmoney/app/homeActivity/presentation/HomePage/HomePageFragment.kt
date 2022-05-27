@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,9 +41,25 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         binding.lifecycleOwner = this
 
         //Setting up recycler view
+
+        // solution #1 based on chinese article
+//        val params = binding.recyclerView.layoutParams
+//        params.apply {
+//            width = requireContext().resources.displayMetrics.widthPixels
+//            height = requireContext().resources.displayMetrics.heightPixels
+//        }
+
+        // solution #2 -> https://stackoverflow.com/questions/44347883/loading-large-number-of-items-in-recycler-view
+//        binding.recyclerView.setHasFixedSize(true)
+//        binding.recyclerView.isNestedScrollingEnabled = false
+//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext()).apply { isAutoMeasureEnabled = false }
+
+
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        binding.recyclerView.isNestedScrollingEnabled = false
         adapter = SchemesAdapter(requireContext(), this)
         binding.recyclerView.adapter = adapter
+
 
         return binding.root
     }
@@ -75,7 +92,10 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
 
     override fun onItemClicked(scheme: AllSchemesEntity) {
         Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
-        Log.d(TAG, "Item clicked :${scheme.schemeName}")
+        Log.d(TAG, "Item clicked :${scheme.schemeCode}")
+
+        findNavController().navigate(R.id.action_homePageFragment_to_schemeFragment)
+
     }
 
 

@@ -76,9 +76,9 @@ class Register2Fragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.getEmailAuthTaskResult().observe(viewLifecycleOwner) { Task ->
-            if (Task.result.user != null){
+            if (Task.result?.user != null){
                 Log.d(TAG, "observer: emailAuthResult user")
-                viewModel.createUserInDb(Task.result.user!!)
+                viewModel.createUserInDb(Task.result!!.user!!)
             }
             else {
                 Log.d(TAG, "ERROR: user not found while linking phoneAuth with emailAuth")

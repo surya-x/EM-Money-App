@@ -34,7 +34,7 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
         // Checking if schemes are present in the local Database
         if(repository.getSchemesCount() > 0){
             Log.d(TAG, "Table isn't empty!!")
-            _allSchemes.value = repository.getAllSchemesOrdered()
+            _allSchemes.value = repository.getAllSchemes()
             Log.d(TAG, "-> size:${allSchemes.value?.size}")
 
         } else {

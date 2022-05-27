@@ -12,18 +12,14 @@
     android:focusable="true"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="14dp"
-    app:cardElevation="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/item">
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
@@ -34,7 +30,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_hdfc_bank_logo" />
+            app:srcCompat="@drawable/ic_hdfc_bank_logo"
+            />
 
         <TextView
             android:id="@+id/fund_title"
@@ -45,15 +42,15 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/home.grid"
-            app:layout_constraintBottom_toTopOf="@+id/fund_category22"
+            app:layout_constraintBottom_toTopOf="@+id/fund_category"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/imageView2"
+            app:layout_constraintStart_toEndOf="@id/imageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="HDFC Mutual Fund" />
 
         <TextView
-            android:id="@+id/fund_category22"
+            android:id="@+id/fund_category"
             style="@style/home.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@id/fund_title" />
 
         <TextView
-            android:id="@+id/fund_category23"
+            android:id="@+id/three_year_return"
             style="@style/home.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,12 +72,12 @@
             android:alpha="0.4"
             android:text="3Y Return:"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/fund_category22"
-            app:layout_constraintEnd_toStartOf="@id/fund_category24"
-            app:layout_constraintTop_toTopOf="@id/fund_category24" />
+            app:layout_constraintBottom_toBottomOf="@id/fund_category"
+            app:layout_constraintEnd_toStartOf="@id/fund_return"
+            app:layout_constraintTop_toTopOf="@id/fund_return" />
 
         <TextView
-            android:id="@+id/fund_category24"
+            android:id="@+id/fund_return"
             style="@style/home.description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,9 +85,9 @@
             android:alpha="0.4"
             android:text="15.8%"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/fund_category22"
+            app:layout_constraintBottom_toBottomOf="@id/fund_category"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fund_category22" />
+            app:layout_constraintTop_toTopOf="@id/fund_category" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
