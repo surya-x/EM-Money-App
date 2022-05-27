@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -94,8 +95,10 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
         Log.d(TAG, "Item clicked :${scheme.schemeCode}")
 
-        findNavController().navigate(R.id.action_homePageFragment_to_schemeFragment)
+//        val schemeID: Integer = Integer(scheme.schemeCode)
+        val action = HomePageFragmentDirections.actionHomePageFragmentToSchemeFragment(scheme.schemeCode)
 
+        findNavController().navigate(action)
     }
 
 

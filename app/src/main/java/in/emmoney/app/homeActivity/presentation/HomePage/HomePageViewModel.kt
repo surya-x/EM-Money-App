@@ -32,7 +32,7 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
 
     fun fetchAllSchemes() {
         // Checking if schemes are present in the local Database
-        if(repository.getSchemesCount() > 0){
+        if(repository.getSchemesCountOfAllSchemes() > 0){
             Log.d(TAG, "Table isn't empty!!")
             _allSchemes.value = repository.getAllSchemes()
             Log.d(TAG, "-> size:${allSchemes.value?.size}")
@@ -45,7 +45,7 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
 
                 _allSchemes.postValue(responseObject)
 
-                repository.insertListOfSchemes(responseObject)
+                repository.insertListOfSchemesToAllSchemes(responseObject)
             }
         }
     }

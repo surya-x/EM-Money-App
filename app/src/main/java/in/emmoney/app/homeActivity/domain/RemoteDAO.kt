@@ -13,8 +13,12 @@ interface RemoteDAO {
     suspend fun getAllSchemes (): List<AllSchemesEntity>
 
     @GET("/mf/100351")
-    suspend fun getOneSchemes (): Call<SchemeDetailed>
+    fun getOneSchemes (): Call<SchemeDetailed>
 
-//    @GET("/mf")
-//    fun getAllSchemes (): Call<AllSchemesItem>
+//    @GET("/mf/100351")
+//    fun getOneSchemes (): SchemeDetailed
+
+//    @GET("/mf/100351")
+//    fun getOneSchemes (schemeCode: Int): SchemeDetailed
+
 }

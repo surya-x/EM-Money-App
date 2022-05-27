@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_homePageFragment_to_schemeFragment"
             app:destination="@id/schemeFragment" />
+
     </fragment>
 
     <fragment
@@ -43,5 +44,11 @@
     <fragment
         android:id="@+id/schemeFragment"
         android:name="in.emmoney.app.homeActivity.presentation.homePage.SchemeFragment"
-        android:label="Funds" />
+        android:label="Funds" >
+
+        <argument
+            android:name="schemeID"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>

@@ -2,28 +2,29 @@ package `in`.emmoney.app.homeActivity.data
 
 import `in`.emmoney.app.homeActivity.domain.AllSchemesDao
 import `in`.emmoney.app.homeActivity.domain.models.AllSchemesEntity
+import `in`.emmoney.app.homeActivity.domain.models.SchemeDetailed
 import android.util.Log
 
 class SchemeRepo (private val allSchemesDao: AllSchemesDao) {
 
-    val TAG: String = "SchemeRepo.kt"
+    private val TAG = "SchemeRepo"
 
 //    val allSchemes: LiveData< List<AllSchemesEntity> > = allSchemesDao.getAllSchemes()
 
-    suspend fun insert(allSchemesEntity: AllSchemesEntity){
+    suspend fun insertToAllSchemes(allSchemesEntity: AllSchemesEntity){
         allSchemesDao.insert(allSchemesEntity)
     }
 
-    suspend fun insertListOfSchemes(allSchemesEntityList: List<AllSchemesEntity>){
+    suspend fun insertListOfSchemesToAllSchemes(allSchemesEntityList: List<AllSchemesEntity>){
         Log.d(TAG, "insertListOfSchemes called, size:${allSchemesEntityList.size}")
         allSchemesDao.insertListOfSchemes(allSchemesEntityList)
     }
 
-    suspend fun delete(allSchemesEntity: AllSchemesEntity){
+    suspend fun deleteFromAllSchemes(allSchemesEntity: AllSchemesEntity){
         allSchemesDao.delete(allSchemesEntity)
     }
 
-    fun getSchemesCount() : Int {
+    fun getSchemesCountOfAllSchemes() : Int {
         return allSchemesDao.getSchemesCount()
     }
 
@@ -38,5 +39,9 @@ class SchemeRepo (private val allSchemesDao: AllSchemesDao) {
     suspend fun getAllSchemesFromNetwork(): List<AllSchemesEntity> {
         return EMMoneyClient.remoteDAO.getAllSchemes()
     }
+
+//    suspend fun getDetailedSchemeFromNetwork(schemeCode: Int): SchemeDetailed {
+//        return EMMoneyClient.remoteDAO.getOneSchemes(schemeCode)
+//    }
 
 }
