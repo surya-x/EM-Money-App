@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_home_page">
         <action
             android:id="@+id/action_homePageFragment_to_completeKycFragment"
-            app:destination="@id/completeKycFragment" />
+            app:destination="@id/completeKycFragment"
+            app:popUpTo="@id/homePageFragment"/>
         <action
             android:id="@+id/action_homePageFragment_to_schemeFragment"
-            app:destination="@id/schemeFragment" />
+            app:destination="@id/schemeFragment"
+            app:popUpTo="@id/homePageFragment"/>
+        <action
+            android:id="@+id/action_homePageFragment_to_allSchemeFragment"
+            app:destination="@id/allSchemeFragment"
+            app:popUpTo="@id/homePageFragment"/>
 
     </fragment>
 
@@ -50,5 +56,14 @@
             android:name="schemeID"
             app:argType="integer" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/allSchemeFragment"
+        android:name="in.emmoney.app.homeActivity.presentation.homePage.AllSchemeFragment"
+        android:label="All Funds" >
+        <action
+            android:id="@+id/action_allSchemeFragment_to_schemeFragment"
+            app:destination="@id/schemeFragment"/>
     </fragment>
 </navigation>

@@ -4,8 +4,6 @@ import `in`.emmoney.app.R
 import `in`.emmoney.app.databinding.ActivityHomeBinding
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
@@ -13,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.ktx.Firebase
 
 
 class HomeActivity : AppCompatActivity() {
@@ -47,7 +44,8 @@ class HomeActivity : AppCompatActivity() {
                 R.id.dashboardFragment,
                 R.id.myAccountFragment,
                 R.id.completeKycFragment,
-                R.id.schemeFragment
+                R.id.schemeFragment,
+                R.id.allSchemeFragment
             )
         )
 
@@ -58,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.myAccountFragment -> View.GONE
                 R.id.completeKycFragment -> View.GONE
                 R.id.schemeFragment -> View.GONE
+                R.id.allSchemeFragment -> View.GONE
                 else -> View.VISIBLE
             }
         }
@@ -70,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
 //        }
 //        testCrashlytics()
     }
+
 
 //    private fun testCrashlytics() {
 //        // Creates a button that mimics a crash when pressed

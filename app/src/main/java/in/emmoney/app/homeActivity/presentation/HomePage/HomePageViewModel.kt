@@ -5,6 +5,7 @@ import `in`.emmoney.app.homeActivity.data.SchemesRoomDatabase
 import `in`.emmoney.app.homeActivity.domain.models.AllSchemesEntity
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,27 +30,49 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
     val allSchemes: LiveData< List<AllSchemesEntity> >
         get() = _allSchemes
 
+    private val _searchBarEnabled = MutableLiveData<Boolean>()
+    val searchBarEnabled: LiveData<Boolean>
+        get() = _searchBarEnabled
 
-    fun fetchAllSchemes() {
+
+
+    fun fetchLimitedSchemes() {
         // Checking if schemes are present in the local Database
         if(repository.getSchemesCountOfAllSchemes() > 0){
-            Log.d(TAG, "Table isn't empty!!")
-            _allSchemes.value = repository.getAllSchemes()
+            Log.d(TAG, "Found in database")
+            _allSchemes.value = repository.getAllSchemesLimitRand()
             Log.d(TAG, "-> size:${allSchemes.value?.size}")
 
         } else {
-            Log.d(TAG, "Table IS empty!!")
+            Log.d(TAG, "NOT found in database, requesting API")
+
+            // Making a network call in case not present in local DB
             viewModelScope.launch(Dispatchers.IO) {
                 val responseObject = repository.getAllSchemesFromNetwork()
                 Log.d(TAG, "response got from network, size:${responseObject.size}")
 
-                _allSchemes.postValue(responseObject)
+                if (responseObject.size > 20)
+                    _allSchemes.postValue(responseObject.subList(0, 20))
 
                 repository.insertListOfSchemesToAllSchemes(responseObject)
             }
         }
     }
 
-    fun delete() = viewModelScope.launch(Dispatchers.IO) {  }
+    fun setSearchBarEnabled(boolean: Boolean){
+        _searchBarEnabled.value = boolean
+    }
+
+    fun getSearchResults(text: String) {
+        Log.d(TAG, "getResults called:")
+        _allSchemes.value = repository.searchSchemeName(text)
+//        val results = repository.searchSchemeNameLike(text)
+//        if(results.isEmpty()){
+//            Toast.makeText()
+//        }
+//        _allSchemes.value = results
+
+    }
+
 
 }

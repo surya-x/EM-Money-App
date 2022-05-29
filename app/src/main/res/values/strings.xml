@@ -30,7 +30,9 @@
     <string name="not_registered_yet">Not registered yet?</string>
     <string name="create_an_account">Create an Account</string>
     <string name="or">OR</string>
+
     <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="we_have_been_send_the_code_verification_to_your_mobile_number">We have been send the code verification to your Mobile number</string>
     <string name="didnt_receive_the_code">Didn\'t receive the code?</string>
@@ -55,6 +57,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="profile">Profile</string>
 
+
     <string name="grid_text_1">High Returns</string>
     <string name="grid_text_2">Low Risk</string>
     <string name="grid_text_3">Better than FD</string>
@@ -63,5 +66,7 @@
     <string name="grid_text_6">Top Funds</string>
     <string name="kyc_card">Complete your e-KYC by filling complete details to start trading on EM Money</string>
     <string name="ekyc_description">Fill the required details to complete E-Kyc.</string>
+    <string name="about_fund">is one of the leading mutual fund in India. ideal for investors who either lack large sums for investment, or for those who neither have the inclination nor the time to research the market, yet want to grow their wealth.
+        \n\nThe money collected in mutual funds is invested by professional fund managers in line with the scheme’s stated objective.</string>
 
 </resources>

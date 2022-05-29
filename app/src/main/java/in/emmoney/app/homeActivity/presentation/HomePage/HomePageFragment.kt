@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.core.view.ViewCompat
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -41,6 +41,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+
         //Setting up recycler view
 
         // solution #1 based on chinese article
@@ -61,32 +62,91 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         adapter = SchemesAdapter(requireContext(), this)
         binding.recyclerView.adapter = adapter
 
+        viewModel.setSearchBarEnabled(false)
 
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // in here you can do logic when backPress is clicked
+                if(viewModel.searchBarEnabled.value == true){
+                    Log.d(TAG, "back button pressed -> searchEnabled = true")
+                    binding.cardViewSearch.text.clear()
+                    viewModel.setSearchBarEnabled(false)
+
+                }else{
+                    Log.d(TAG, "back button pressed -> searchEnabled = false")
+                    isEnabled = false
+                    activity?.onBackPressed()
+                }
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 //        testCrashlytics()
-        viewModel.fetchAllSchemes()
+//        viewModel.fetchAllSchemes()
         setupListeners()
         setupObservers()
-
     }
 
-    private fun setupListeners() {
+    private fun setupListeners()  {
         binding.kycCard.setOnClickListener {
             findNavController().navigate(R.id.action_homePageFragment_to_completeKycFragment)
         }
 
+        binding.viewAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homePageFragment_to_allSchemeFragment)
+        }
+
+        binding.cardViewSearch.setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    Log.d(TAG, "Search button clicked")
+
+                    if(binding.cardViewSearch.text.toString().isNotEmpty()){
+                        viewModel.setSearchBarEnabled(true)
+                    }
+                    else
+                        Toast.makeText(context, "Query can't be empty", Toast.LENGTH_SHORT).show()
+
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setupObservers() {
-        binding.viewModel?.allSchemes?.observe(viewLifecycleOwner) {
+        viewModel.allSchemes.observe(viewLifecycleOwner) {
             it?.let {
                 Log.d(TAG, "$TAG: schemes list updated, size:${it.size}")
                 adapter.updateList(it)
+                if(it.isEmpty()){
+                    Toast.makeText(context, "No Fund Found!!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.searchBarEnabled.observe(viewLifecycleOwner) {
+            if(it == true){
+                binding.title.visibility = View.GONE
+                binding.gridLayout.visibility = View.GONE
+                binding.kycCard.visibility = View.GONE
+
+                viewModel.getSearchResults(binding.cardViewSearch.text.toString())
+            }
+            else{
+                binding.title.visibility = View.VISIBLE
+                binding.gridLayout.visibility = View.VISIBLE
+                binding.kycCard.visibility = View.VISIBLE
+
+                viewModel.fetchLimitedSchemes()
             }
         }
     }
