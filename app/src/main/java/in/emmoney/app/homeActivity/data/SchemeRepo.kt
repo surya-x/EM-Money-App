@@ -49,6 +49,10 @@ class SchemeRepo (private val allSchemesDao: AllSchemesDao) {
         return allSchemesDao.getAllSchemesOrdered()
     }
 
+    fun getSelectedFunds(): List<AllSchemesEntity>{
+        return allSchemesDao.getSelectedFunds()
+    }
+
     fun searchSchemeName(query: String): List<AllSchemesEntity>{
         val likeQuery = "%${query}%"
         val limit = 50

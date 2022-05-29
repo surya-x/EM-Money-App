@@ -1,6 +1,9 @@
 package `in`.emmoney.app.homeActivity.presentation.homePage
 
 import `in`.emmoney.app.R
+import `in`.emmoney.app.common.presentation.CustomProgressView
+import `in`.emmoney.app.common.utils.Utils.dismissIfShowing
+import `in`.emmoney.app.common.utils.Utils.toggle
 import `in`.emmoney.app.databinding.FragmentHomePageBinding
 import `in`.emmoney.app.homeActivity.domain.models.AllSchemesEntity
 import android.os.Bundle
@@ -19,6 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 class HomePageFragment : Fragment(), ISchemesAdapter {
 
     private val TAG = "HomePageFragment"
+
+    private var progressView: CustomProgressView? = null
 
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
@@ -89,6 +94,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressView = CustomProgressView(requireContext())
 //        testCrashlytics()
 //        viewModel.fetchAllSchemes()
         setupListeners()
@@ -101,7 +107,13 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         }
 
         binding.viewAll.setOnClickListener {
-            findNavController().navigate(R.id.action_homePageFragment_to_allSchemeFragment)
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("all")
+            findNavController().navigate(action)
+        }
+
+        binding.gridLayout.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
         }
 
         binding.cardViewSearch.setOnEditorActionListener { v, actionId, event ->
@@ -110,6 +122,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
                     Log.d(TAG, "Search button clicked")
 
                     if(binding.cardViewSearch.text.toString().isNotEmpty()){
+//                        viewModel.setProgress(true)
                         viewModel.setSearchBarEnabled(true)
                     }
                     else
@@ -124,6 +137,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
 
     private fun setupObservers() {
         viewModel.allSchemes.observe(viewLifecycleOwner) {
+//            viewModel.setProgress(false)
             it?.let {
                 Log.d(TAG, "$TAG: schemes list updated, size:${it.size}")
                 adapter.updateList(it)
@@ -149,10 +163,14 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
                 viewModel.fetchLimitedSchemes()
             }
         }
+
+        viewModel.getProgress().observe(viewLifecycleOwner) {
+            progressView?.toggle(it)
+        }
     }
 
     override fun onItemClicked(scheme: AllSchemesEntity) {
-        Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
         Log.d(TAG, "Item clicked :${scheme.schemeCode}")
 
 //        val schemeID: Integer = Integer(scheme.schemeCode)
@@ -162,10 +180,14 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
     }
 
 
-//    override fun onBackPressed() {
-//        val a = Intent(Intent.ACTION_MAIN)
-//        a.addCategory(Intent.CATEGORY_HOME)
-//        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(a)
-//    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        try {
+            progressView?.dismissIfShowing()
+            _binding = null
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

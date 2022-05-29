@@ -28,6 +28,10 @@ interface AllSchemesDao {
 //    @Query("SELECT schemeName FROM all_schemes_table WHERE schemeCode = :i")
 //    fun findSchemeNameByCode(i: Int): Any?
 
+    @Query("SELECT * FROM all_schemes_table WHERE schemeCode = '120594' OR schemeCode = '120539' OR schemeCode = '120578' OR schemeCode = '125354' OR schemeCode = '120823' OR schemeCode = '128051'")
+    fun getSelectedFunds(): List<AllSchemesEntity>
+
+
     @Query("SELECT count(*) FROM all_schemes_table LIMIT 1")
     fun getSchemesCount(): Int
 

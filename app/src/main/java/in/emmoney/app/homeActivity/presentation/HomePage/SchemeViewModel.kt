@@ -42,7 +42,12 @@ class SchemeViewModel(application: Application) : AndroidViewModel(application) 
     val fundHouse: LiveData<String?>
         get() = _fundHouse
 
+    private val _fundReturn = MutableLiveData<String?>()
+    val fundReturn: LiveData<String?>
+        get() = _fundReturn
 
+
+    private val progress = MutableLiveData(false)
 
     private val repository: SchemeRepo
 
@@ -52,6 +57,8 @@ class SchemeViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun updateDataToViews(schemeID: Int) {
+        setProgress(true)
+
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "Request called for -> getOneSchemeFromNetwork")
             currentScheme = repository.getOneSchemeFromNetwork(schemeID).body()
@@ -65,10 +72,32 @@ class SchemeViewModel(application: Application) : AndroidViewModel(application) 
             _fundCategory.postValue(currentScheme?.meta?.schemeCategory)
             _fundHouse.postValue(currentScheme?.meta?.fundHouse)
 
-        }
+            if(currentScheme?.data?.size != null && currentScheme?.data?.size!! > 1){
+                val oneDayReturn = calculateOneDayReturn(currentScheme?.data?.get(0)?.nav!!.toFloat(), currentScheme?.data?.get(1)?.nav!!.toFloat())
+                _fundReturn.postValue(oneDayReturn.toString())
+            }
 
+//            if(currentScheme?.data?.get(0)?.nav != null && currentScheme?.data?.get(1)?.nav != null) {
+//                val oneDayReturn = calculateOneDayReturn(currentScheme?.data?.get(0)?.nav!!.toFloat(), currentScheme?.data?.get(1)?.nav!!.toFloat())
+//                _fundReturn.postValue(oneDayReturn.toString())
+//            }
+
+
+            progress.postValue(false)
+        }
 
     }
 
+    fun calculateOneDayReturn(cur: Float, prev: Float) : Float {
+        return ((cur - prev)/cur)*100
+    }
+
+    fun setProgress(show: Boolean) {
+        progress.value = show
+    }
+
+    fun getProgress(): LiveData<Boolean> {
+        return progress
+    }
 
 }

@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="in.emmoney.app.homeActivity.presentation.homePage.SchemeViewModel" />
+
         <import type="android.view.View" />
     </data>
 
@@ -71,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:alpha="0.8"
-                android:text="Return:"
+                android:text="1D Return:"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/nav_detail"
                 app:layout_constraintEnd_toStartOf="@id/fund_return"
@@ -97,9 +99,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.6"
-                android:textSize="12sp"
                 android:gravity="start"
                 android:maxLines="1"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nav_symbol"
                 tools:text="(26-05-2022)" />
@@ -306,9 +308,108 @@
                 android:id="@+id/constraint_layout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/constraint_layout2">
+
+                <TextView
+                    android:id="@+id/invest_now"
+                    style="@style/home.info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="start"
+                    android:paddingBottom="8dp"
+                    android:text="Invest Now"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/invest_now_desc"
+                    style="@style/home.info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.6"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="Enter Investment Amount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invest_now" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/invest_now_desc">
+
+                    <LinearLayout
+                        android:id="@+id/money_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/phone_block"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/country_code"
+                            style="@style/home.title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.2"
+                            android:paddingHorizontal="8dp"
+                            android:letterSpacing="0.1"
+                            android:text="₹" />
+
+                        <EditText
+                            android:id="@+id/phone"
+                            style="@style/home.title"
+                            android:textSize="16sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="Enter Amount"
+                            android:inputType="phone"
+                            android:maxLength="7"
+                            android:paddingHorizontal="4dp"
+                            android:textColorHint="#4D000000"
+                            android:windowSoftInputMode="adjustPan|adjustResize"
+                            app:boxBackgroundMode="none"
+                            tools:text="25000" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/request_otp"
+                        style="@style/onBoarding.button"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/button_border"
+                        android:text="Trade"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/money_layout"
+                        tools:ignore="TextContrastCheck" />
+
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_layout3">
 
                 <TextView
                     android:id="@+id/fund_house"
@@ -340,12 +441,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout4"
+                android:id="@+id/constraint_layout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_layout3">
+                app:layout_constraintTop_toBottomOf="@id/constraint_layout4">
 
                 <TextView
                     android:id="@+id/about"

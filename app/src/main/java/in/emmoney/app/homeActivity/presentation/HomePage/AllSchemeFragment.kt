@@ -12,11 +12,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 
 class AllSchemeFragment : Fragment(), ISchemesAdapter {
 
-    private val TAG = "HomePageFragment"
+    private val TAG = "AllSchemeFragment"
 
     private var _binding: FragmentAllSchemeBinding? = null
     private val binding get() = _binding!!
@@ -24,6 +25,7 @@ class AllSchemeFragment : Fragment(), ISchemesAdapter {
     private lateinit var viewModel: AllSchemeViewModel
     private lateinit var adapter: SchemesAdapter
 
+    private val args: AllSchemeFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +44,13 @@ class AllSchemeFragment : Fragment(), ISchemesAdapter {
         adapter = SchemesAdapter(requireContext(), this)
         binding.recyclerView.adapter = adapter
 
+        Log.d(TAG, "Fragment called, toView: ${args.toView}")
         setupObservers()
-        viewModel.fetchAllSchemes()
+
+        if(args.toView == "all")
+            viewModel.fetchAllSchemes()
+        else
+            viewModel.fetchSelectedSchemes()
 
         return binding.root
     }

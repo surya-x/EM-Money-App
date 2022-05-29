@@ -34,6 +34,7 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
     val searchBarEnabled: LiveData<Boolean>
         get() = _searchBarEnabled
 
+    private val progress = MutableLiveData(false)
 
 
     fun fetchLimitedSchemes() {
@@ -72,6 +73,14 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
 //        }
 //        _allSchemes.value = results
 
+    }
+
+    fun setProgress(show: Boolean) {
+        progress.value = show
+    }
+
+    fun getProgress(): LiveData<Boolean> {
+        return progress
     }
 
 

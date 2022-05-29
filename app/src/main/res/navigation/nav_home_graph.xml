@@ -65,5 +65,8 @@
         <action
             android:id="@+id/action_allSchemeFragment_to_schemeFragment"
             app:destination="@id/schemeFragment"/>
+        <argument
+            android:name="toView"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -30,4 +30,9 @@ class AllSchemeViewModel(application: Application) : AndroidViewModel(applicatio
         Log.d(TAG, "-> size:${allSchemes.value?.size}")
     }
 
+    fun fetchSelectedSchemes() {
+        _allSchemes.value = repository.getSelectedFunds()
+        Log.d(TAG, "-> size:${allSchemes.value?.size}")
+    }
+
 }

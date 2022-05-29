@@ -77,10 +77,10 @@ class ProfilePageFragment : Fragment() {
         }
 
         binding.myTransactions.setOnClickListener {
-            Toast.makeText(context, "Under Construction!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "No Funds Traded Yet!!", Toast.LENGTH_SHORT).show()
         }
         binding.helpSupport.setOnClickListener {
-            Toast.makeText(context, "Under Construction!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "We Will be back soon!!", Toast.LENGTH_SHORT).show()
         }
         binding.termsService.setOnClickListener {
             Toast.makeText(context, "Under Construction!!", Toast.LENGTH_SHORT).show()

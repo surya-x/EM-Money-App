@@ -1,6 +1,8 @@
 package `in`.emmoney.app.homeActivity.presentation.homePage
 
 import `in`.emmoney.app.R
+import `in`.emmoney.app.common.presentation.CustomProgressView
+import `in`.emmoney.app.common.utils.Utils.toggle
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,11 +13,13 @@ import `in`.emmoney.app.databinding.FragmentSchemeBinding
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-import kotlin.math.roundToInt
+
 
 class SchemeFragment : Fragment() {
 
     private val TAG = "SchemeFragment"
+
+    private var progressView: CustomProgressView? = null
 
     private var _binding: FragmentSchemeBinding? = null
     private val binding get() = _binding!!
@@ -41,6 +45,7 @@ class SchemeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressView = CustomProgressView(requireContext())
 
         val schemeID = args.schemeID
         Log.d(TAG, "id = $schemeID" )
@@ -63,7 +68,7 @@ class SchemeFragment : Fragment() {
             it?.let {
                 val floatNav = it.toFloatOrNull() // Return null if string is not entirely numbers or decimal
                 val roundOff = String.format("%.2f", floatNav)
-                Log.d("roundoff", roundOff)
+//                Log.d("roundoff", roundOff)
                 binding.latestNavValue.text = roundOff
                 binding.navDetail.text = roundOff
             }
@@ -93,5 +98,19 @@ class SchemeFragment : Fragment() {
                 binding.fundHouseValue.text = it
             }
         })
+
+        viewModel.fundReturn.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                val floatNav = it.toFloatOrNull() // Return null if string is not entirely numbers or decimal
+                var roundOff = String.format("%.2f", floatNav)
+                roundOff += "%"
+//                val percentage = "$it%"
+                binding.fundReturn.text = roundOff
+            }
+        })
+
+        viewModel.getProgress().observe(viewLifecycleOwner) {
+            progressView?.toggle(it)
+        }
     }
 }
