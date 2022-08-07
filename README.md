@@ -5,7 +5,7 @@ FinTech app developed for the organisation (EM Money). This will provide a platf
 
 The idea is to keep the app simple and scalable while using new libraries and tools which makes it easier to build high quality Android applications.
 
-<img alt="NewsApp Main Page" height="450px" src="" />
+<img alt="image" height="450px" src="" />
 
 # Development Setup 🖥
 
