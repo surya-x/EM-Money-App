@@ -66,12 +66,12 @@ class HomePageViewModel(application: Application) : AndroidViewModel(application
 
     fun getSearchResults(text: String) {
         Log.d(TAG, "getResults called:")
-        _allSchemes.value = repository.searchSchemeName(text)
-//        val results = repository.searchSchemeNameLike(text)
+//        _allSchemes.value = repository.searchSchemeName(text)
+        val results = repository.searchSchemeNameLike(text)
 //        if(results.isEmpty()){
 //            Toast.makeText()
 //        }
-//        _allSchemes.value = results
+        _allSchemes.value = results
 
     }
 

@@ -13,15 +13,21 @@
         <action
             android:id="@+id/action_homePageFragment_to_completeKycFragment"
             app:destination="@id/completeKycFragment"
-            app:popUpTo="@id/homePageFragment"/>
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homePageFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_schemeFragment"
             app:destination="@id/schemeFragment"
-            app:popUpTo="@id/homePageFragment"/>
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homePageFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_allSchemeFragment"
             app:destination="@id/allSchemeFragment"
-            app:popUpTo="@id/homePageFragment"/>
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homePageFragment" />
 
     </fragment>
 
@@ -32,7 +38,9 @@
         tools:layout="@layout/fragment_profile_page" >
         <action
             android:id="@+id/action_profilePageFragment_to_myAccountFragment"
-            app:destination="@id/myAccountFragment" />
+            app:destination="@id/myAccountFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -64,7 +72,9 @@
         android:label="All Funds" >
         <action
             android:id="@+id/action_allSchemeFragment_to_schemeFragment"
-            app:destination="@id/schemeFragment"/>
+            app:destination="@id/schemeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
         <argument
             android:name="toView"
             app:argType="string" />

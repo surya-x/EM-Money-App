@@ -61,6 +61,7 @@ class SchemeViewModel(application: Application) : AndroidViewModel(application) 
 
         viewModelScope.launch(Dispatchers.IO) {
             Log.d(TAG, "Request called for -> getOneSchemeFromNetwork")
+
             currentScheme = repository.getOneSchemeFromNetwork(schemeID).body()
 
             Log.d(TAG, "Response received :${currentScheme?.meta.toString()}")
@@ -85,7 +86,6 @@ class SchemeViewModel(application: Application) : AndroidViewModel(application) 
 
             progress.postValue(false)
         }
-
     }
 
     fun calculateOneDayReturn(cur: Float, prev: Float) : Float {

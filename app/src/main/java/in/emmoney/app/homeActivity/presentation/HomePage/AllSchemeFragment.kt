@@ -66,7 +66,7 @@ class AllSchemeFragment : Fragment(), ISchemesAdapter {
 
 
     override fun onItemClicked(scheme: AllSchemesEntity) {
-        Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
         Log.d(TAG, "Item clicked :${scheme.schemeCode}")
 
 //        val schemeID: Integer = Integer(scheme.schemeCode)

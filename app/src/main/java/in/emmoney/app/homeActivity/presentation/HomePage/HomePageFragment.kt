@@ -68,6 +68,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
         binding.recyclerView.adapter = adapter
 
         viewModel.setSearchBarEnabled(false)
+        viewModel.setProgress(true)
 
         return binding.root
     }
@@ -111,7 +112,32 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
             findNavController().navigate(action)
         }
 
-        binding.gridLayout.setOnClickListener {
+        binding.card1.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
+        }
+
+        binding.card2.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
+        }
+
+        binding.card3.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
+        }
+
+        binding.card4.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
+        }
+
+        binding.card5.setOnClickListener {
+            val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
+            findNavController().navigate(action)
+        }
+
+        binding.card6.setOnClickListener {
             val action = HomePageFragmentDirections.actionHomePageFragmentToAllSchemeFragment("selected")
             findNavController().navigate(action)
         }
@@ -137,7 +163,7 @@ class HomePageFragment : Fragment(), ISchemesAdapter {
 
     private fun setupObservers() {
         viewModel.allSchemes.observe(viewLifecycleOwner) {
-//            viewModel.setProgress(false)
+            viewModel.setProgress(false)
             it?.let {
                 Log.d(TAG, "$TAG: schemes list updated, size:${it.size}")
                 adapter.updateList(it)
